@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="24.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
+   <children>
+      
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Sentiment Analysis" styleClass="section-title"/>
+                  <Label text="Paste your corpus in the sidebar, hit Process, then explore each tab." styleClass="section-subtitle"/>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      
+      <GridPane hgap="12.0" vgap="12.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+         </columnConstraints>
+         <rowConstraints><RowConstraints minHeight="75.0"/></rowConstraints>
+         <children>
+            <HBox spacing="14.0" alignment="CENTER_LEFT" style="-fx-background-color: rgba(61, 220, 132, 0.12); -fx-background-radius: 12; -fx-padding: 14;" GridPane.columnIndex="0">
+               <children>
+                  <Label text="☺" style="-fx-text-fill: #1A9C56; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: white; -fx-background-radius: 50; -fx-min-width: 34; -fx-min-height: 34; -fx-alignment: center;"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Positive" style="-fx-text-fill: #1A7A42; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblPositivePercent" text="0.0%" style="-fx-text-fill: #1A7A42; -fx-font-size: 20px; -fx-font-weight: 800;"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="14.0" alignment="CENTER_LEFT" style="-fx-background-color: rgba(79, 172, 254, 0.12); -fx-background-radius: 12; -fx-padding: 14;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="😐" style="-fx-text-fill: #1565C0; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: white; -fx-background-radius: 50; -fx-min-width: 34; -fx-min-height: 34; -fx-alignment: center;"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Neutral" style="-fx-text-fill: #1565C0; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblNeutralPercent" text="0.0%" style="-fx-text-fill: #1565C0; -fx-font-size: 20px; -fx-font-weight: 800;"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="14.0" alignment="CENTER_LEFT" style="-fx-background-color: rgba(244, 63, 94, 0.12); -fx-background-radius: 12; -fx-padding: 14;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="☹" style="-fx-text-fill: #E11D48; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: white; -fx-background-radius: 50; -fx-min-width: 34; -fx-min-height: 34; -fx-alignment: center;"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Negative" style="-fx-text-fill: #BE123C; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblNegativePercent" text="0.0%" style="-fx-text-fill: #BE123C; -fx-font-size: 20px; -fx-font-weight: 800;"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      
+      <GridPane hgap="16.0" vgap="16.0" VBox.vgrow="ALWAYS">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="50.0" />
+            <ColumnConstraints percentWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="480.0" vgrow="ALWAYS"/>
+         </rowConstraints>
+         <children>
+            
+            <VBox spacing="16.0" GridPane.columnIndex="0">
+               <children>
+                  
+                  <VBox styleClass="feature-card" alignment="CENTER" spacing="12.0" prefHeight="160.0">
+                     <children>
+                        <Label text="✦" style="-fx-text-fill: #6366F1; -fx-font-size: 22px;"/>
+                        <Label fx:id="lblFinalSentiment" text="AWAITING PROCESS" style="-fx-text-fill: #1A2540; -fx-font-size: 18px; -fx-font-weight: 800;"/>
+                        <ProgressBar fx:id="progressSentimentIndicator" progress="0.0" prefWidth="340.0" style="-fx-min-height: 8; -fx-max-height: 8;"/>
+                        <Label fx:id="lblConfidenceText" text="Confidence: --%" styleClass="word-tip"/>
+                     </children>
+                  </VBox>
+                  
+                    <VBox styleClass="feature-card" spacing="12.0" VBox.vgrow="ALWAYS">
+                      <children>
+
+                         <Label text="Model Performance" styleClass="feature-card-title"/>
+
+                         <TableView fx:id="sentimentMetricsTable" prefHeight="220.0" VBox.vgrow="ALWAYS">
+                            <columns>
+                               <TableColumn fx:id="colSentMetric" text="Metric" prefWidth="240.0" style="-fx-alignment: center-left;">
+                                  <cellValueFactory>
+                                     <PropertyValueFactory property="metric"/>
+                                  </cellValueFactory>
+                               </TableColumn>
+
+                               <TableColumn fx:id="colSentScore" text="Score" prefWidth="180.0" style="-fx-alignment: center-left;">
+                                  <cellValueFactory>
+                                     <PropertyValueFactory property="score"/>
+                                  </cellValueFactory>
+                               </TableColumn>
+                            </columns>
+
+<!--                            <columnResizePolicy>
+                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>-->
+                         </TableView>
+
+                      </children>
+                   </VBox>
+                  
+                  <VBox styleClass="feature-card" spacing="8.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Dataset Justification" styleClass="feature-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+<!--                              <Label fx:id="lblTokensCountTag" text="0 tokens" styleClass="word-tip"/>-->
+                           </children>
+                        </HBox>
+                        <Label text="We trained a Multinomial Naive Bayes classifier on 2,000 Kaggle lifestyle app reviews. Labeled Positive, Neutral, or Negative, the clean corpus matches our context vocabulary (fitness, diet, progress, healthy). It was parsed line-by-line using standard Java stream parsing libraries for quick inference processing loops." styleClass="feature-card-desc" wrapText="true" lineSpacing="3.0"/>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            
+            <VBox styleClass="feature-card" spacing="12.0" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Training Console" styleClass="feature-card-title"/>
+                  <TextArea fx:id="txtTrainingConsole" editable="false" wrapText="true" VBox.vgrow="ALWAYS" 
+                            style="-fx-control-inner-background: #0B0E14; -fx-text-fill: #A6ACCD; -fx-font-family: 'Consolas', monospace; -fx-font-size: 12px; -fx-padding: 4; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+               </children>
+            </VBox>
+            
+         </children>
+      </GridPane>
+   </children>
+</VBox>

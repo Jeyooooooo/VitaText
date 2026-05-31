@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="25.0" styleClass="dashboard-body-fragment" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox spacing="5.0">
+         <children>
+            <Label text="Dashboard" styleClass="dashboard-title"/>
+            <Label text="Paste your corpus in the sidebar, hit Process, then explore each tab." styleClass="dashboard-subtitle"/>
+         </children>
+      </VBox>
+      
+      <GridPane hgap="15.0" vgap="15.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="90.0" prefHeight="90.0" />
+         </rowConstraints>
+         <children>
+            <HBox styleClass="metric-card, metric-tokens" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="0">
+               <children>
+                  <Label text="✉" styleClass="metric-icon, icon-tokens"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Total Tokens" styleClass="metric-label"/>
+                        <Label text="100" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox styleClass="metric-card, metric-lemmas" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="1">
+               <children>
+                  <Label text="⚙" styleClass="metric-icon, icon-lemmas"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Unique Lemmas" styleClass="metric-label"/>
+                        <Label text="45" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox styleClass="metric-card, metric-pos" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="2">
+               <children>
+                  <Label text="🏷" styleClass="metric-icon, icon-pos"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="POS Tags" styleClass="metric-label"/>
+                        <Label text="86" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox styleClass="metric-card, metric-sentiment" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="3">
+               <children>
+                  <Label text="⇄" styleClass="metric-icon, icon-sentiment"/>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Overall Sentiment" styleClass="metric-label"/>
+                        <Label text="Positive" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      
+      <GridPane hgap="20.0" vgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="50.0" />
+            <ColumnConstraints percentWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="240.0" />
+            <RowConstraints minHeight="240.0" />
+         </rowConstraints>
+         <children>
+            <VBox styleClass="feature-card" spacing="12.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <children>
+                  <Label text="🏷" styleClass="feature-card-icon, f-icon-token"/>
+                  <Label text="Tokenization" styleClass="feature-card-title"/>
+                  <Label text="Split text into individual tokens and analyze word patterns." styleClass="feature-card-desc" wrapText="true"/>
+                  <Button fx:id="btnDashTokenization" text="↗  Analyze Tokens" styleClass="feature-card-btn, f-btn-token"/>
+               </children>
+            </VBox>
+            <VBox styleClass="feature-card" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+               <children>
+                  <Label text="☷" styleClass="feature-card-icon, f-icon-lemma"/>
+                  <Label text="Lemmatization" styleClass="feature-card-title"/>
+                  <Label text="Reduce inflected words to their base or dictionary form." styleClass="feature-card-desc" wrapText="true"/>
+                  <Button fx:id="btnDashLemmatization" text="↗  View Lemmas" styleClass="feature-card-btn, f-btn-lemma"/>
+               </children>
+            </VBox>
+            <VBox styleClass="feature-card" spacing="12.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Ⓐ" styleClass="feature-card-icon, f-icon-pos"/>
+                  <Label text="POS Tagging" styleClass="feature-card-title"/>
+                  <Label text="Assign parts of speech to each token to understand structure." styleClass="feature-card-desc" wrapText="true"/>
+                  <Button fx:id="btnDashPosTagging" text="↗  Inspect Tags" styleClass="feature-card-btn, f-btn-pos"/>
+               </children>
+            </VBox>
+            <VBox styleClass="feature-card" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="☺" styleClass="feature-card-icon, f-icon-sentiment"/>
+                  <Label text="Sentiment Analysis" styleClass="feature-card-title"/>
+                  <Label text="Determine overall sentiment and emotional tone." styleClass="feature-card-desc" wrapText="true"/>
+                  <Button fx:id="btnDashSentiment" text="↗  Analyze Mood" styleClass="feature-card-btn, f-btn-sentiment"/>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</VBox>

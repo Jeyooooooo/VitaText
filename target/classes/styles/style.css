@@ -1,0 +1,287 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+/* Base Root Variables & Reset */
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ScrollPane customizations */
+.content-scrollpane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.content-scrollpane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 24;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 1 0 0;
+}
+.logo-area {
+    -fx-padding: 0 0 10 0;
+}
+.logo-icon {
+    -fx-text-fill: #4F46E5;
+    -fx-font-size: 24px;
+}
+.logo-text {
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.section-header {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1px;
+}
+
+.section-title {
+    -fx-font-weight: bold;
+}
+
+/* Input Fields & Sidebar Controls */
+.corpus-textarea {
+    -fx-text-fill: #334155;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+.corpus-textarea .content {
+    -fx-background-color: #F8FAFC;
+}
+.btn-process {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 18;
+    -fx-cursor: hand;
+}
+
+.btn-process:hover {
+    -fx-background-color: #2563EB;
+}
+/*.btn-clear {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #64748B;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+}*/
+
+/* Sidebar Navigation Items */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #64748B;
+    -fx-alignment: center-left;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 16;
+    -fx-background-radius: 10;
+    -fx-max-width: infinity;
+    -fx-cursor: hand;
+}
+.nav-button:hover {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #1E293B;
+}
+.active-nav {
+    -fx-background-color: #E0F2FE;
+    -fx-text-fill: #0369A1;
+}
+
+/* Dashboard Inner Body Workspace */
+.dashboard-body {
+    -fx-padding: 40;
+}
+.dashboard-title {
+    -fx-text-fill: #0F172A;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+.dashboard-subtitle {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+}
+
+.section-title {
+    -fx-text-fill: #0F172A;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+.section-subtitle {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+}
+
+/* Top Horizontal Metrics Cards Layout */
+.metric-card {
+    -fx-background-radius: 16;
+    -fx-padding: 16;
+}
+.metric-icon {
+    -fx-font-size: 20px;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+.metric-label {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 12px;
+}
+.metric-value {
+    -fx-text-fill: #0F172A;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* Color thematic styles for individual metric cards */
+.metric-tokens { -fx-background-color: #DCFCE7; }
+.icon-tokens { -fx-background-color: #BBF7D0; -fx-text-fill: #15803D; }
+
+.metric-lemmas { -fx-background-color: #E0F2FE; }
+.icon-lemmas { -fx-background-color: #BAE6FD; -fx-text-fill: #0369A1; }
+
+.metric-pos { -fx-background-color: #F3E8FF; }
+.icon-pos { -fx-background-color: #E9D5FF; -fx-text-fill: #7E22CE; }
+
+.metric-sentiment { -fx-background-color: #FFEDD5; }
+.icon-sentiment { -fx-background-color: #FED7AA; -fx-text-fill: #C2410C; }
+
+/* Mid-Lower Big Action Feature Cards */
+.feature-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(148,163,184,0.08), 15, 0, 0, 4);
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    
+    /* THE FIX: Enforce uniform height variables */
+    /* Increased from 240px to a tall, prominent 320px bounding box layout */
+    -fx-min-height: 320px;
+    -fx-pref-height: 320px;
+}
+.feature-card-icon {
+    -fx-font-size: 24px;
+    -fx-padding: 0 0 10 0;
+}
+.feature-card-title {
+    -fx-text-fill: #0F172A;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.feature-card-desc {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 4px;
+}
+.feature-card-btn {
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-margin-top: 10;
+}
+
+/* Feature specific accent styling classes */
+.f-icon-token { -fx-text-fill: #22C55E; }
+.f-btn-token { -fx-background-color: #HN0; -fx-background-color: #DCFCE7; -fx-text-fill: #15803D; }
+
+.f-icon-lemma { -fx-text-fill: #3B82F6; }
+.f-btn-lemma { -fx-background-color: #E0F2FE; -fx-text-fill: #0369A1; }
+
+.f-icon-pos { -fx-text-fill: #A855F7; }
+.f-btn-pos { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
+
+.f-icon-sentiment { -fx-text-fill: #F97316; }
+.f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
+
+/* ==========================================================================
+   Modern Customized TableView Rules
+   ========================================================================== */
+.data-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Header Column Strip Styling */
+.data-table .column-header-background {
+    -fx-background-color: #F8FAFC;
+    -fx-padding: 8 0;
+}
+.data-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 0 1 0;
+}
+.data-table .column-header .label {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-transform: uppercase;
+}
+
+/* Individual Cell Rows Styling */
+.data-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 6 0;
+}
+.data-table .table-row-cell:filled:hover {
+    -fx-background-color: #F8FAFC;
+}
+.data-table .table-cell {
+    -fx-text-fill: #1A2540;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+/* Disables native ugly empty placeholder lines */
+.data-table .placeholder .label {
+    -fx-text-fill: #94A3B8;
+}
+
+.sidebar {
+    -fx-background-color: #FFFFFF; /* Or your preferred color */
+    -fx-padding: 15; 
+    -fx-margin: 0;
+}
+
+/* Add this to your style.css */
+.btn-clear {
+    -fx-background-color: #FEE2E2; /* Light red/rose background */
+    -fx-text-fill: #EF4444;       /* Red icon/text */
+    -fx-background-radius: 10;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-border-color: #FECACA;    /* Subtle border */
+    -fx-border-radius: 6;
+    -fx-alignment: center;
+}
+
+.btn-clear:hover {
+    -fx-background-color: #FECACA; /* Slightly darker on hover */
+}
+
+.btn-clear:pressed {
+    -fx-background-color: #FCA5A5;
+}

@@ -1,0 +1,9 @@
+com\mycompany\nlp_finalproj\CSVDataLoader.class
+com\mycompany\nlp_finalproj\SentimentResult.class
+com\mycompany\nlp_finalproj\App.class
+com\mycompany\nlp_finalproj\AppController.class
+com\mycompany\nlp_finalproj\ReviewRecord.class
+com\mycompany\nlp_finalproj\LemmaRecord.class
+com\mycompany\nlp_finalproj\PosRecord.class
+module-info.class
+com\mycompany\nlp_finalproj\SystemInfo.class
