@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <BorderPane fx:controller="com.mycompany.nlp_finalproj.AppController" 
             stylesheets="@../styles/style.css" 
@@ -23,7 +25,11 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="logo-area">
                <children>
-                  <Label text="❖" styleClass="logo-icon"/>
+                    <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                        <image>
+                            <Image url="/images/vitatext-logo.png"/>
+                        </image>
+                    </ImageView>
                   <Label text="VitaText" styleClass="logo-text"/>
                </children>
             </HBox>
