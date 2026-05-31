@@ -47,7 +47,7 @@
                   <VBox alignment="CENTER_LEFT">
                      <children>
                         <Label text="Word Tokens" styleClass="metric-label"/>
-                        <Label fx:id="lblCountWords" text="100" styleClass="metric-value"/>
+                        <Label fx:id="lblCountWords" text="0" styleClass="metric-value"/>
                      </children>
                   </VBox>
                </children>
@@ -64,7 +64,7 @@
                   <VBox alignment="CENTER_LEFT">
                      <children>
                         <Label text="Sentences Detected" styleClass="metric-label"/>
-                        <Label fx:id="lblCountSentences" text="45" styleClass="metric-value"/>
+                        <Label fx:id="lblCountSentences" text="0" styleClass="metric-value"/>
                      </children>
                   </VBox>
                </children>
@@ -81,7 +81,7 @@
                   <VBox alignment="CENTER_LEFT">
                      <children>
                         <Label text="Punctuation Tokens" styleClass="metric-label"/>
-                        <Label fx:id="lblCountPunctuation" text="86" styleClass="metric-value"/>
+                        <Label fx:id="lblCountPunctuation" text="0" styleClass="metric-value"/>
                      </children>
                   </VBox>
                </children>
@@ -105,7 +105,7 @@
                   <HBox alignment="CENTER_LEFT" styleClass="workspace-card-header">
                      <children>
                         <Label text="Sentence Tokenization" styleClass="workspace-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Label fx:id="lblSentenceSectionTag" text="12 sentences" styleClass="workspace-card-badge"/>
+                        <Label fx:id="lblSentenceSectionTag" text="0 sentences" styleClass="workspace-card-badge"/>
                      </children>
                   </HBox>
                   <ScrollPane fitToWidth="true" styleClass="inner-panel-scrollpane" VBox.vgrow="ALWAYS">
@@ -121,7 +121,7 @@
                   <HBox alignment="CENTER_LEFT" styleClass="workspace-card-header">
                      <children>
                         <Label text="Word Tokenization" styleClass="workspace-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Label fx:id="lblWordSectionTag" text="148 tokens" styleClass="workspace-card-badge"/>
+                        <Label fx:id="lblWordSectionTag" text="0 tokens" styleClass="workspace-card-badge"/>
                      </children>
                   </HBox>
                   <ScrollPane fitToWidth="true" styleClass="inner-panel-scrollpane" VBox.vgrow="ALWAYS">
@@ -131,7 +131,6 @@
                   </ScrollPane>
                </children>
             </VBox>
-            
          </children>
       </GridPane>
    </children>

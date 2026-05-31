@@ -486,13 +486,12 @@
 /* Shared base styling rules applied to every chip */
 .token-badge-pill {
     -fx-background-radius: 100;
-    -fx-padding: 6; 
+    -fx-padding: 6 14; 
     -fx-alignment: center;
     
     /* Transparent border trick to force perfect 8px margin spacing inside TextFlow views */
     -fx-border-color: transparent;
     -fx-border-width: 0 8 8 0; 
-    -fx-margin: 6;
 }
 
 /* Solid background palettes without visible borders */
