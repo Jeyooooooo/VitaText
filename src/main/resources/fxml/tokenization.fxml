@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.TextFlow?>
 
 <VBox spacing="24.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
@@ -20,88 +22,111 @@
                   <Label text="Sentence-level and word-level decomposition of corpus" styleClass="section-subtitle"/>
                </children>
             </VBox>
-            <HBox styleClass="dash-tool-chips" spacing="6.0" alignment="CENTER_RIGHT">
-               <children>
-                  <HBox styleClass="dash-tool-chip" spacing="5.0" alignment="CENTER">
-                     <children>
-                        <Label text="⚙  STANFORD NLP" style="-fx-font-weight: 700; -fx-text-fill: #1A9C56;"/>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
          </children>
       </HBox>
       
-      <GridPane hgap="12.0" vgap="12.0">
+      <GridPane hgap="16.0" vgap="16.0">
          <columnConstraints>
             <ColumnConstraints percentWidth="33.33"/>
             <ColumnConstraints percentWidth="33.33"/>
             <ColumnConstraints percentWidth="33.33"/>
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="75.0"/>
-         </rowConstraints>
-         <children>
-            <VBox styleClass="stat-chip" spacing="4.0" GridPane.columnIndex="0" style="-fx-background-color: rgba(167, 139, 250, 0.1); -fx-background-radius: 12; -fx-padding: 12;">
-               <children>
-                  <Label text="SENTENCES DETECTED" styleClass="stat-chip-label" style="-fx-text-fill: #5B21B6; -fx-font-weight: bold;"/>
-                  <Label fx:id="lblCountSentences" text="0" style="-fx-text-fill: #5B21B6; -fx-font-size: 20px; -fx-font-weight: 800; -fx-padding: 4 0 0 0;"/>
-               </children>
-            </VBox>
-
-            <VBox styleClass="stat-chip" spacing="4.0" GridPane.columnIndex="1" style="-fx-background-color: rgba(56, 189, 248, 0.1); -fx-background-radius: 12; -fx-padding: 12;">
-               <children>
-                  <Label text="WORD TOKENS" styleClass="stat-chip-label" style="-fx-text-fill: #0369A1; -fx-font-weight: bold;"/>
-                  <Label fx:id="lblCountWords" text="0" style="-fx-text-fill: #0369A1; -fx-font-size: 20px; -fx-font-weight: 800; -fx-padding: 4 0 0 0;"/>
-               </children>
-            </VBox>
-
-            <VBox styleClass="stat-chip" spacing="4.0" GridPane.columnIndex="2" style="-fx-background-color: rgba(251, 113, 133, 0.1); -fx-background-radius: 12; -fx-padding: 12;">
-               <children>
-                  <Label text="PUNCTUATION TOKENS" styleClass="stat-chip-label" style="-fx-text-fill: #9D174D; -fx-font-weight: bold;"/>
-                  <Label fx:id="lblCountPunctuation" text="0" style="-fx-text-fill: #9D174D; -fx-font-size: 20px; -fx-font-weight: 800; -fx-padding: 4 0 0 0;"/>
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-      
-      <GridPane hgap="16.0">
-         <columnConstraints>
-            <ColumnConstraints percentWidth="50.0"/>
-            <ColumnConstraints percentWidth="50.0"/>
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="500.0" vgrow="ALWAYS"/>
+            <RowConstraints minHeight="90.0" prefHeight="90.0" />
          </rowConstraints>
          <children>
             
-            <VBox styleClass="feature-card" spacing="16.0" GridPane.columnIndex="0">
+            <HBox styleClass="metric-card, metric-tokens" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="0">
                <children>
-                  <HBox alignment="CENTER_LEFT" style="-fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 12 0;">
+                  <StackPane styleClass="card-icon-container, icon-bg-token">
                      <children>
-                        <Label text="💬  SENTENCE TOKENIZATION" styleClass="stat-chip-label" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Label fx:id="lblSentenceSectionTag" text="0 sentences" styleClass="word-tip"/>
+                        <SVGPath content="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20 M8 11h8 M8 7h6" 
+                                 styleClass="card-svg-icon, stroke-token"/>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Word Tokens" styleClass="metric-label"/>
+                        <Label fx:id="lblCountWords" text="100" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <HBox styleClass="metric-card, metric-lemmas" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="1">
+               <children>
+                  <StackPane styleClass="card-icon-container, icon-bg-lemma">
+                     <children>
+                        <SVGPath content="M10 13h4 M12 6v7 M16 8V6H8v2 M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" 
+                                 styleClass="card-svg-icon, stroke-lemma"/>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Sentences Detected" styleClass="metric-label"/>
+                        <Label fx:id="lblCountSentences" text="45" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <HBox styleClass="metric-card, metric-pos" spacing="15.0" alignment="CENTER_LEFT" GridPane.columnIndex="2">
+               <children>
+                  <StackPane styleClass="card-icon-container, icon-bg-pos">
+                     <children>
+                        <SVGPath content="M12 13h.01 M12 6v3 M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" 
+                                 styleClass="card-svg-icon, stroke-pos"/>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Punctuation Tokens" styleClass="metric-label"/>
+                        <Label fx:id="lblCountPunctuation" text="86" styleClass="metric-value"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            
+         </children>
+      </GridPane>
+      
+      <GridPane hgap="20.0" vgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="50.0"/>
+            <ColumnConstraints percentWidth="50.0"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="540.0" prefHeight="540.0" vgrow="ALWAYS"/>
+         </rowConstraints>
+         <children>
+            
+            <VBox styleClass="workspace-feature-card" spacing="16.0" GridPane.columnIndex="0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" styleClass="workspace-card-header">
+                     <children>
+                        <Label text="Sentence Tokenization" styleClass="workspace-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Label fx:id="lblSentenceSectionTag" text="12 sentences" styleClass="workspace-card-badge"/>
                      </children>
                   </HBox>
-                  <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" styleClass="inner-panel-scrollpane" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox spacing="12.0" fx:id="sentenceRowsContainer" />
+                        <VBox spacing="0.0" fx:id="sentenceRowsContainer" />
                      </content>
                   </ScrollPane>
                </children>
             </VBox>
             
-            <VBox styleClass="feature-card" spacing="16.0" GridPane.columnIndex="1">
+            <VBox styleClass="workspace-feature-card" spacing="16.0" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER_LEFT" style="-fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 12 0;">
+                  <HBox alignment="CENTER_LEFT" styleClass="workspace-card-header">
                      <children>
-                        <Label text="🏷  WORD TOKENIZATION" styleClass="stat-chip-label" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Label fx:id="lblWordSectionTag" text="0 tokens" styleClass="word-tip"/>
+                        <Label text="Word Tokenization" styleClass="workspace-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Label fx:id="lblWordSectionTag" text="148 tokens" styleClass="workspace-card-badge"/>
                      </children>
                   </HBox>
-                  <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" styleClass="inner-panel-scrollpane" VBox.vgrow="ALWAYS">
                      <content>
-                        <TextFlow fx:id="wordTokenFlowContainer" lineSpacing="10.0" style="-fx-padding: 4 0;" />
+                        <TextFlow fx:id="wordTokenFlowContainer" lineSpacing="12.0" style="-fx-padding: 4 0;" />
                      </content>
                   </ScrollPane>
                </children>

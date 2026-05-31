@@ -223,93 +223,101 @@ public void handleNavigation(ActionEvent event) {
         }
 
 private void runTokenizationEngine(String text) {
-        if (sentenceRowsContainer == null || wordTokenFlowContainer == null) return;
+    if (sentenceRowsContainer == null || wordTokenFlowContainer == null) return;
 
-        // Reset visible lists containers
-        sentenceRowsContainer.getChildren().clear();
-        wordTokenFlowContainer.getChildren().clear();
+    // Reset visible lists containers
+    sentenceRowsContainer.getChildren().clear();
+    wordTokenFlowContainer.getChildren().clear();
 
-        // 1. Process Sentence Segmentation Boundary Math
-        // Splits using a standard lookbehind assertion grouping for terminal punctuation marks
-        String[] sentences = text.trim().split("(?<=[.!?])\\s+");
-        int realSentenceCount = 0;
+    // 1. Process Sentence Segmentation Boundary Math
+    String[] sentences = text.trim().split("(?<=[.!?])\\s+");
+    int realSentenceCount = 0;
 
-        for (int i = 0; i < sentences.length; i++) {
-            String cleanSentence = sentences[i].trim();
-            if (cleanSentence.isEmpty()) continue;
-            
-            realSentenceCount++;
-            HBox row = new HBox(12);
-            row.setStyle("-fx-padding: 4 0; -fx-alignment: center-left;");
-            
-            Label indexBadge = new Label(String.valueOf(realSentenceCount));
-            indexBadge.setStyle("-fx-background-color: #0F1A2E; -fx-text-fill: #3DDC84; -fx-background-radius: 50; "
-                    + "-fx-alignment: center; -fx-min-width: 24; -fx-min-height: 24; -fx-font-size: 11px; -fx-font-weight: 800;");
-            
-            Label sentenceLabel = new Label(cleanSentence);
-            sentenceLabel.setStyle("-fx-text-fill: #64748B; -fx-font-size: 14px;");
-            sentenceLabel.setWrapText(true);
-            
-            row.getChildren().addAll(indexBadge, sentenceLabel);
-            sentenceRowsContainer.getChildren().add(row);
-        }
-
-        // 2. Process Lexical Word and Punctuation Properties Loop
-        // Tokenizes alpha-numerics while isolating special punctuation symbols
-        String[] words = text.split("\\s+|(?=[.,!?()\"';:])|(?<=[.,!?()\"';:])");
-        int wordTokensCount = 0;
-        int punctuationTokensCount = 0;
-        int globalTokenID = 1;
-
-        for (String word : words) {
-            String token = word.trim();
-            if (token.isEmpty()) continue;
-
-            // Differentiate words vs structural punctuation symbols
-            boolean isPunctuation = token.matches("[.,!?()\"';:–\\-]");
-            if (isPunctuation) {
-                punctuationTokensCount++;
-            } else {
-                wordTokensCount++;
-            }
-
-            // Build structural chip blocks to drop inside your Flow pane
-            HBox tokenChip = new HBox(4);
-            if (isPunctuation) {
-                // Style punctuation chips with a distinct light-rose theme
-                tokenChip.setStyle("-fx-background-color: rgba(251, 113, 133, 0.1); -fx-background-radius: 100; "
-                        + "-fx-border-color: rgba(251, 113, 133, 0.2); -fx-border-radius: 100; -fx-padding: 4 10; -fx-margin: 0 4 4 0; -fx-alignment: center;");
-            } else {
-                // Default theme for words
-                tokenChip.setStyle("-fx-background-color: rgba(167, 139, 250, 0.1); -fx-background-radius: 100; "
-                        + "-fx-border-color: rgba(167, 139, 250, 0.2); -fx-border-radius: 100; -fx-padding: 4 10; -fx-margin: 0 4 4 0; -fx-alignment: center;");
-            }
-
-            Label indexLabel = new Label(globalTokenID + " ");
-            indexLabel.setStyle("-fx-text-fill: #94A3B8; -fx-font-size: 10px; -fx-font-weight: bold;");
-            
-            Label textLabel = new Label(token);
-            if (isPunctuation) {
-                textLabel.setStyle("-fx-text-fill: #9D174D; -fx-font-size: 12px; -fx-font-weight: 600;");
-            } else {
-                textLabel.setStyle("-fx-text-fill: #5B21B6; -fx-font-size: 12px; -fx-font-weight: 600;");
-            }
-
-            tokenChip.getChildren().addAll(indexLabel, textLabel);
-            wordTokenFlowContainer.getChildren().add(tokenChip);
-            globalTokenID++;
-        }
-
-        // 3. Inject Computed Real-time Metrics onto layout labels
-        if (lblCountSentences != null) lblCountSentences.setText(String.valueOf(realSentenceCount));
-        if (lblCountWords != null) lblCountWords.setText(String.valueOf(wordTokensCount));
-        if (lblCountPunctuation != null) lblCountPunctuation.setText(String.valueOf(punctuationTokensCount));
+    for (int i = 0; i < sentences.length; i++) {
+        String cleanSentence = sentences[i].trim();
+        if (cleanSentence.isEmpty()) continue;
         
-        if (lblSentenceSectionTag != null) lblSentenceSectionTag.setText(realSentenceCount + " sentences");
-        if (lblWordSectionTag != null) lblWordSectionTag.setText((globalTokenID - 1) + " tokens");
+        realSentenceCount++;
+        HBox row = new HBox(12);
+        row.setStyle("-fx-padding: 16 20; -fx-alignment: center-left; -fx-border-color: #F1F5F9; -fx-border-width: 0 0 1 0;");
         
-        System.out.println("Tokenization layout cards calculated and bound dynamically.");
+        Label indexBadge = new Label(realSentenceCount + ".");
+        indexBadge.setStyle("-fx-text-fill: #1E293B; -fx-font-weight: 800; -fx-font-size: 14px; -fx-min-width: 24;");
+        
+        Label sentenceLabel = new Label(cleanSentence);
+        sentenceLabel.setStyle("-fx-text-fill: #334155; -fx-font-size: 14px; -fx-font-weight: 500;");
+        sentenceLabel.setWrapText(true);
+        
+        row.getChildren().addAll(indexBadge, sentenceLabel);
+        sentenceRowsContainer.getChildren().add(row);
     }
+
+    // 2. Build Frequency Map BEFORE rendering chips
+    String[] tokensRaw = text.split("\\s+|(?=[.,!?()\"';:])|(?<=[.,!?()\"';:])");
+    java.util.Map<String, Integer> tokenFrequencies = new java.util.HashMap<>();
+    
+    int wordTokensCount = 0;
+    int punctuationTokensCount = 0;
+    int totalValidTokens = 0;
+
+    // First pass: sanitize tokens and count occurrences
+    for (String rawToken : tokensRaw) {
+        String cleanToken = rawToken.trim();
+        if (cleanToken.isEmpty()) continue;
+        
+        totalValidTokens++;
+        tokenFrequencies.put(cleanToken, tokenFrequencies.getOrDefault(cleanToken, 0) + 1);
+        
+        if (cleanToken.matches("[.,!?()\"';:–\\-]")) {
+            punctuationTokensCount++;
+        } else {
+            wordTokensCount++;
+        }
+    }
+
+    // SORT KEYS BY FREQUENCY DESCENDING (Highest counts first)
+    java.util.List<String> uniqueTokens = new java.util.ArrayList<>(tokenFrequencies.keySet());
+    uniqueTokens.sort((a, b) -> tokenFrequencies.get(b).compareTo(tokenFrequencies.get(a)));
+
+    // Second pass: Iterate over UNIQUE tokens only (Fixes Duplication!)
+    for (String token : uniqueTokens) {
+        boolean isPunctuation = token.matches("[.,!?()\"';:–\\-]");
+        int clearOccurrenceCount = tokenFrequencies.get(token); 
+
+        // 1. Create the base chip container and add the shared base style class
+        HBox tokenChip = new HBox(6);
+        tokenChip.getStyleClass().add("token-badge-pill"); 
+
+        // 2. Add the contextual variant class (Green for words, Purple for punctuation)
+        if (isPunctuation) {
+            tokenChip.getStyleClass().add("badge-pill-punctuation");
+        } else {
+            tokenChip.getStyleClass().add("badge-pill-word");
+        }
+
+        // 3. Create the Frequency Counter Label and add its class
+        Label countLabel = new Label(String.valueOf(clearOccurrenceCount));
+        countLabel.getStyleClass().add("badge-pill-count");
+        
+        // 4. Create the Word Text Label and add its class
+        Label textLabel = new Label(token);
+        textLabel.getStyleClass().add("badge-pill-text");
+
+        // 5. Structure the tree and append it to your TextFlow container
+        tokenChip.getChildren().addAll(countLabel, textLabel);
+        wordTokenFlowContainer.getChildren().add(tokenChip);
+    }
+
+    // 3. Inject Computed Real-time Metrics onto layout labels
+    if (lblCountSentences != null) lblCountSentences.setText(String.valueOf(realSentenceCount));
+    if (lblCountWords != null) lblCountWords.setText(String.valueOf(wordTokensCount));
+    if (lblCountPunctuation != null) lblCountPunctuation.setText(String.valueOf(punctuationTokensCount));
+    
+    if (lblSentenceSectionTag != null) lblSentenceSectionTag.setText(realSentenceCount + " sentences");
+    if (lblWordSectionTag != null) lblWordSectionTag.setText(totalValidTokens + " tokens");
+    
+    System.out.println("Tokenization layout chips rendered uniquely with aggregate counts.");
+}
 
     private void runLemmatizationEngine(String text) {
         ObservableList<LemmaRecord> tableDataList = FXCollections.observableArrayList();
