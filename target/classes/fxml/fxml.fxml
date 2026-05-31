@@ -232,24 +232,14 @@
 
     <!-- CENTER CONTENT -->
     <center>
-        <ScrollPane fitToWidth="true"
-                    styleClass="content-scrollpane">
-
-            <content>
-                <VBox fx:id="contentArea"
-                      spacing="25"
-                      styleClass="dashboard-body">
-
-                    <children>
-                        <fx:include source="dashboard.fxml"/>
-                        <fx:include source="tokenization.fxml"/>
-                        <fx:include source="lemmatization.fxml"/>
-                    </children>
-
-                </VBox>
-            </content>
-
-        </ScrollPane>
+        <VBox fx:id="contentArea" 
+              spacing="25" 
+              styleClass="dashboard-body"
+              fillWidth="true">
+            <children>
+                <fx:include source="dashboard.fxml"/>
+            </children>
+        </VBox>
     </center>
 
 </BorderPane>

@@ -452,3 +452,38 @@
 .btn-exit:pressed {
     -fx-background-color: #FCA5A5;
 }
+
+/* ==========================================
+   Cleaned Base Viewport & Reset Configurations
+   ========================================== */
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Montserrat";
+    /* Enforces that the main view context respects hard window boundary ceilings */
+    -fx-max-height: -fx-inherited; 
+}
+
+/* Dashboard Inner Body Workspace Layout Adjustments */
+.dashboard-body {
+    -fx-padding: 40;
+    -fx-background-color: transparent;
+    /* Prevents inner VBox contents from overflowing beyond view boundaries */
+    -fx-max-height: infinity; 
+}
+
+/* ==========================================
+   Cleaned / Deprecated Scroll Configurations 
+   ========================================== */
+/* Clear out previous `.content-scrollpane` definitions and force hide any residual elements */
+.scroll-bar,
+.scroll-bar .track,
+.scroll-bar .thumb,
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-opacity: 0;
+    -fx-visible: false;
+}
