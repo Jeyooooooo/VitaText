@@ -134,18 +134,7 @@
     -fx-font-size: 13px;
 }
 
-.btn-process {
-    -fx-background-color: #3B82F6;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10;
-    -fx-padding: 10 18;
-    -fx-cursor: hand;
-}
 
-.btn-process:hover {
-    -fx-background-color: #2563EB;
-}
 /*.btn-clear {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #64748B;
@@ -328,27 +317,73 @@
     -fx-font-weight: 500;
 }
 
+
+
 /* Disables native ugly empty placeholder lines */
 .data-table .placeholder .label {
     -fx-text-fill: #94A3B8;
 }
 
-/* Add this to your style.css */
-.btn-clear {
-    -fx-background-color: #FEE2E2; /* Light red/rose background */
-    -fx-text-fill: #EF4444;       /* Red icon/text */
-    -fx-background-radius: 10;
-    -fx-font-size: 14px;
+.btn-process {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+
+    /* wider + more breathing room */
+    -fx-padding: 10 26;
+
     -fx-cursor: hand;
-    -fx-border-color: #FECACA;    /* Subtle border */
-    -fx-border-radius: 6;
     -fx-alignment: center;
+
+    /* spacing between icon + text */
+    -fx-graphic-text-gap: 25;
+    -fx-font-size: 15px;
+}
+
+.btn-process:hover {
+    -fx-background-color: #2563EB;
+}
+
+/* ---------------- TRASH BUTTON ---------------- */
+
+.btn-clear {
+    -fx-background-color: #F1F5F9;   /* neutral gray */
+    -fx-text-fill: #64748B;          /* muted gray icon */
+
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+
+    -fx-cursor: hand;
+    -fx-alignment: center;
+
+    /* square pill button */
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
 }
 
 .btn-clear:hover {
-    -fx-background-color: #FECACA; /* Slightly darker on hover */
+    -fx-background-color: #FEE2E2;   /* soft red background */
+    -fx-text-fill: #EF4444;          /* red icon */
+    -fx-border-color: #FECACA;
 }
 
 .btn-clear:pressed {
     -fx-background-color: #FCA5A5;
+}
+
+.btn-clear SVGPath {
+    -fx-stroke: #66777D;   /* default gray */
+    -fx-fill: transparent;
+}
+
+.btn-clear:hover SVGPath {
+    -fx-stroke: #EF4444;   /* red on hover */
 }

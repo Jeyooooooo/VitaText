@@ -11,6 +11,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.layout.Pane?>
 
 <BorderPane fx:controller="com.mycompany.nlp_finalproj.AppController"
             stylesheets="@../styles/style.css"
@@ -82,24 +84,47 @@
                               prefHeight="150"
                               styleClass="corpus-textarea"/>
 
-                    <HBox spacing="10">
+                    <HBox spacing="10" maxWidth="Infinity" HBox.hgrow="ALWAYS">
 
-                        <children>
+    <children>
 
-                            <Button text="▶ Process"
-                                    styleClass="btn-process"
-                                    maxWidth="Infinity"
-                                    HBox.hgrow="ALWAYS"
-                                    onAction="#handleProcessExecution"/>
+        <!-- PROCESS (expands) -->
+        <Button styleClass="btn-process"
+                text="Process"
+                maxWidth="Infinity"
+                HBox.hgrow="ALWAYS">
 
-                            <Button text="🗑"
-                                    styleClass="btn-clear"
-                                    prefWidth="50"
-                                    prefHeight="35"
-                                    onAction="#handleClearInput"/>
+            <graphic>
+                <SVGPath content="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                         stroke="#FFFFFF"
+                         strokeWidth="2"
+                         fill="transparent"/>
+            </graphic>
+        </Button>
 
-                        </children>
-                    </HBox>
+        <!-- CLEAR (fixed size) -->
+        <Button styleClass="btn-clear"
+                prefWidth="44"
+                prefHeight="44"
+                minWidth="44"
+                minHeight="44"
+                maxWidth="44"
+                maxHeight="44"
+                onAction="#handleClearInput">
+
+            <graphic>
+                <SVGPath content="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6
+                                 M3 6h18
+                                 M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                         strokeWidth="2"
+                         fill="transparent"
+                         strokeLineCap="ROUND"
+                         strokeLineJoin="ROUND"/>
+            </graphic>
+        </Button>
+
+    </children>
+</HBox>
 
                 </children>
             </VBox>
