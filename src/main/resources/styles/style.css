@@ -1,69 +1,26 @@
-
+/* ==========================================================================
+   1. GLOBAL ROOT SETTINGS & LAYOUT RESETS
+   ========================================================================== */
 .root {
     -fx-font-family: "Montserrat";
 }
 
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Montserrat";
+    -fx-max-height: -fx-inherited; 
+}
+
+/* Base Window Top Header Strip */
 .app-header {
     -fx-background-color: #FFFFFF;
     -fx-padding: 12 20;
     -fx-alignment: center-left;
-
-    /* subtle separation from content */
     -fx-border-color: #E2E8F0;
     -fx-border-width: 0 0 1 0;
-
 }
 
-/* Base Root Variables & Reset */
-.main-container {
-    -fx-background-color: #F8FAFC;
-    -fx-font-family: "Montserrat";
-}
-
-/* =========================
-   ScrollPane base cleanup
-   ========================= */
-.content-scrollpane {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-}
-
-.content-scrollpane .viewport {
-    -fx-background-color: transparent;
-}
-
-/* =========================
-   ScrollBar (both vertical & horizontal)
-   ========================= */
-.scroll-bar {
-    -fx-background-color: transparent;
-}
-
-/* track (background line) */
-.scroll-bar .track {
-    -fx-background-color: transparent;
-}
-
-/* thumb (the draggable part) */
-.scroll-bar .thumb {
-    -fx-background-color: #CBD5E1;  /* soft gray */
-    -fx-background-radius: 10;
-}
-
-/* hover effect */
-.scroll-bar .thumb:hover {
-    -fx-background-color: #94A3B8;
-}
-
-/* arrows (hide them for modern UI) */
-.scroll-bar .increment-button,
-.scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-    -fx-shape: "";
-    -fx-opacity: 0;
-}
-
+/* Sidebar Structural Column Container */
 .sidebar {
     -fx-background-color: #FFFFFF;
     -fx-padding: 24 16;
@@ -71,93 +28,76 @@
     -fx-border-width: 0 1 0 0;
 }
 
-.logo-area {
-    -fx-padding: 0 0 10 0;
-}
-.logo-icon {
-    -fx-text-fill: #4F46E5;
-    -fx-font-size: 24px;
-}
-.logo-text {
-    -fx-text-fill: #1E293B;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-
-.section-header {
-    -fx-text-fill: #64748B; /* Darker, clear mid-tone gray */
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 0 6 12;
-    -fx-letter-spacing: 1px;
-}
-
-.section-title {
-    -fx-font-weight: bold;
-}
-
-.corpus-textarea {
+/* Central Page View Content Body */
+.dashboard-body {
+    -fx-padding: 40;
     -fx-background-color: transparent;
+    -fx-max-height: infinity; 
+}
 
+
+/* ==========================================================================
+   2. TEXT FIELDS & INPUT COMPONENT OVERRIDES
+   ========================================================================== */
+.corpus-textarea {
+    -fx-background-color: #FFFFFF;
     -fx-text-fill: #343235;
-    
     -fx-font-family: "Montserrat";
     -fx-font-weight: normal;
     -fx-font-size: 15px;
-
     -fx-line-spacing: 4.5;
-
     -fx-border-color: #D2D2D2;
     -fx-border-radius: 12;
     -fx-background-radius: 12;
-
     -fx-padding: 10;
 }
 
-/* 🔥 IMPORTANT: this is the REAL TextArea skin */
-.corpus-textarea .content {
-    -fx-background-color: transparent;
-}
-
-/* 🔥 removes scrollpane background */
+/* Protect internal textarea scrolling architecture from general layout resets */
 .corpus-textarea .scroll-pane {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent !important;
+    -fx-max-width: inherit !important;
+    -fx-max-height: inherit !important;
+    -fx-opacity: 1 !important;
+    -fx-visible: true !important;
 }
 
-/* 🔥 removes viewport background */
+.corpus-textarea .content {
+    -fx-background-color: transparent !important;
+}
+
 .corpus-textarea .viewport {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent !important;
 }
 
-/* 🔥 forces font inside editor */
 .corpus-textarea .text {
     -fx-font-family: "Montserrat";
     -fx-font-size: 13px;
 }
 
 
-/*.btn-clear {
-    -fx-background-color: #FFFFFF;
-    -fx-text-fill: #64748B;
-    -fx-border-color: #E2E8F0;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-padding: 10;
-    -fx-cursor: hand;
-}*/
+/* ==========================================================================
+   3. SIDEBAR NAVIGATION BUTTONS & ACCENTS
+   ========================================================================== */
+.section-header {
+    -fx-text-fill: #64748B; 
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 6 12;
+    -fx-letter-spacing: 1px;
+}
 
-/* Sidebar Navigation Items */
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #334155; /* Refined slate dark gray color */
+    -fx-text-fill: #334155; 
     -fx-alignment: center-left;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-padding: 14 16;
-    -fx-background-radius: 14; /* Smooth pill curve layout */
+    -fx-background-radius: 14; 
     -fx-max-width: infinity;
     -fx-cursor: hand;
 }
+
 .nav-button .nav-icon {
     -fx-stroke: #334155;
     -fx-stroke-width: 2;
@@ -166,6 +106,7 @@
     -fx-stroke-line-join: round;
 }
 
+/* Hover State Interactions */
 .nav-button:hover {
     -fx-background-color: #F1F5F9;
     -fx-text-fill: #1E293B;
@@ -175,40 +116,102 @@
     -fx-stroke: #1E293B;
 }
 
+/* Active Highlight Pill States */
 .active-nav {
-    -fx-background-color: #D6EDFF; /* Light-blue accent pill color background */
+    -fx-background-color: #D6EDFF; 
     -fx-text-fill: #1E293B;
 }
 
 .active-nav .nav-icon {
-    -fx-stroke: #1E293B; /* Accent icon retains crisp dark contrast match */
+    -fx-stroke: #1E293B; 
 }
 
-/* Dashboard Inner Body Workspace */
-.dashboard-body {
-    -fx-padding: 40;
-}
-.dashboard-title {
-    -fx-text-fill: #0F172A;
-    -fx-font-size: 28px;
+
+/* ==========================================================================
+   4. WINDOW APPLICATION BUTTONS (PROCESS, CLEAR, TOP CONTROL)
+   ========================================================================== */
+.btn-process {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-padding: 10 26;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-graphic-text-gap: 25;
+    -fx-font-size: 15px;
 }
-.dashboard-subtitle {
-    -fx-text-fill: #64748B;
-    -fx-font-size: 14px;
-}
-
-.section-title {
-    -fx-text-fill: #0F172A;
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-}
-.section-subtitle {
-    -fx-text-fill: #64748B;
-    -fx-font-size: 14px;
+.btn-process:hover {
+    -fx-background-color: #2563EB;
 }
 
-/* Top Horizontal Metrics Cards Layout */
+/* Trash Clear Action Button */
+.btn-clear {
+    -fx-background-color: #F1F5F9;   
+    -fx-text-fill: #64748B;          
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
+}
+.btn-clear:hover {
+    -fx-background-color: #FEE2E2;   
+    -fx-text-fill: #EF4444;          
+    -fx-border-color: #FECACA;
+}
+.btn-clear:pressed {
+    -fx-background-color: #FCA5A5;
+}
+.btn-clear SVGPath {
+    -fx-stroke: #66777D;   
+    -fx-fill: transparent;
+}
+.btn-clear:hover SVGPath {
+    -fx-stroke: #EF4444;   
+}
+
+/* Minimize & Exit Top-Right Control Actions */
+.window-control-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-padding: 0;
+}
+.window-control-btn .window-control-icon {
+    -fx-stroke: #64748B;  
+    -fx-stroke-width: 2;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.btn-minimize:hover {
+    -fx-background-color: #F1F5F9; 
+}
+.btn-minimize:hover .window-control-icon {
+    -fx-stroke: #1E293B; 
+}
+.btn-exit:hover {
+    -fx-background-color: #FEE2E2; 
+}
+.btn-exit:hover .window-control-icon {
+    -fx-stroke: #EF4444; 
+}
+.btn-minimize:pressed { -fx-background-color: #E2E8F0; }
+.btn-exit:pressed { -fx-background-color: #FCA5A5; }
+
+
+/* ==========================================================================
+   5. TOP ROW STATISTICAL METRIC CARDS
+   ========================================================================== */
 .metric-card {
     -fx-background-radius: 16;
     -fx-padding: 16;
@@ -228,71 +231,117 @@
     -fx-font-weight: bold;
 }
 
-/* Color thematic styles for individual metric cards */
-.metric-tokens { -fx-background-color: #DCFCE7; }
-.icon-tokens { -fx-background-color: #BBF7D0; -fx-text-fill: #15803D; }
-
-.metric-lemmas { -fx-background-color: #E0F2FE; }
-.icon-lemmas { -fx-background-color: #BAE6FD; -fx-text-fill: #0369A1; }
-
-.metric-pos { -fx-background-color: #F3E8FF; }
-.icon-pos { -fx-background-color: #E9D5FF; -fx-text-fill: #7E22CE; }
-
+/* Color definitions for individual metric blocks */
+.metric-tokens    { -fx-background-color: #DCFCE7; }
+.icon-tokens      { -fx-background-color: #BBF7D0; -fx-text-fill: #15803D; }
+.metric-lemmas    { -fx-background-color: #E0F2FE; }
+.icon-lemmas      { -fx-background-color: #BAE6FD; -fx-text-fill: #0369A1; }
+.metric-pos       { -fx-background-color: #F3E8FF; }
+.icon-pos         { -fx-background-color: #E9D5FF; -fx-text-fill: #7E22CE; }
 .metric-sentiment { -fx-background-color: #FFEDD5; }
-.icon-sentiment { -fx-background-color: #FED7AA; -fx-text-fill: #C2410C; }
+.icon-sentiment   { -fx-background-color: #FED7AA; -fx-text-fill: #C2410C; }
 
-/* Mid-Lower Big Action Feature Cards */
-.feature-card {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 16;
-    -fx-padding: 30;
-    -fx-effect: dropshadow(three-pass-box, rgba(148,163,184,0.08), 15, 0, 0, 4);
-    -fx-border-color: #F1F5F9;
-    -fx-border-width: 1;
-    -fx-border-radius: 16;
-    
-    /* THE FIX: Enforce uniform height variables */
-    /* Increased from 240px to a tall, prominent 320px bounding box layout */
-    -fx-min-height: 320px;
-    -fx-pref-height: 320px;
-}
-.feature-card-icon {
-    -fx-font-size: 24px;
-    -fx-padding: 0 0 10 0;
-}
-.feature-card-title {
-    -fx-text-fill: #0F172A;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-.feature-card-desc {
-    -fx-text-fill: #64748B;
-    -fx-font-size: 14px;
-    -fx-line-spacing: 4px;
-}
-.feature-card-btn {
-    -fx-background-radius: 10;
-    -fx-padding: 10 20;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-    -fx-margin-top: 10;
-}
-
-/* Feature specific accent styling classes */
-.f-icon-token { -fx-text-fill: #22C55E; }
-.f-btn-token { -fx-background-color: #HN0; -fx-background-color: #DCFCE7; -fx-text-fill: #15803D; }
-
-.f-icon-lemma { -fx-text-fill: #3B82F6; }
-.f-btn-lemma { -fx-background-color: #E0F2FE; -fx-text-fill: #0369A1; }
-
-.f-icon-pos { -fx-text-fill: #A855F7; }
-.f-btn-pos { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
-
-.f-icon-sentiment { -fx-text-fill: #F97316; }
-.f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
 
 /* ==========================================================================
-   Modern Customized TableView Rules
+   6. HIGH-FIDELITY GRAPHIC BACKGROUND CARDS (560x350)
+   ========================================================================== */
+.image-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 24; 
+    -fx-border-radius: 24;
+    
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain; 
+    
+    /* Strict dimensions lock to prevent asset distortion */
+    -fx-min-width: 560px;
+    -fx-pref-width: 560px;
+    -fx-max-width: 560px;
+    
+    -fx-min-height: 350px;
+    -fx-pref-height: 350px;
+    -fx-max-height: 350px;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(148, 163, 184, 0.06), 20, 0, 0, 6);
+}
+
+/* Asset mappings to project image folder targets */
+.img-card-token {
+    -fx-background-image: url("../images/card-bg-token.png");
+}
+.img-card-lemma {
+    -fx-background-image: url("../images/card-bg-lemma.png");
+}
+.img-card-pos {
+    -fx-background-image: url("../images/card-bg-pos.png");
+}
+.img-card-sentiment {
+    -fx-background-image: url("../images/card-bg-sentiment.png");
+}
+
+/* Feature buttons inside image cards */
+.feature-card-btn {
+    -fx-background-radius: 99;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.f-btn-token     { -fx-background-color: #E8FBF0; -fx-text-fill: #15803D; }
+.f-btn-lemma     { -fx-background-color: #E0F2FE; -fx-text-fill: #0369A1; }
+.f-btn-pos       { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
+.f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
+
+/* Base Vector Settings for Button Internal Icons */
+.feature-card-btn .btn-arrow-icon {
+    -fx-stroke-width: 2;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+
+/* Explicit Thematic Color Mapping Matches */
+.feature-card-btn .arrow-stroke-token {
+    -fx-stroke: #15803D; /* Deep Forest Green */
+}
+
+.feature-card-btn .arrow-stroke-lemma {
+    -fx-stroke: #0369A1; /* Vivid Ocean Blue */
+}
+
+.feature-card-btn .arrow-stroke-pos {
+    -fx-stroke: #7E22CE; /* Regal Purple */
+}
+
+.feature-card-btn .arrow-stroke-sentiment {
+    -fx-stroke: #C2410C; /* Rich Vibrant Orange */
+}
+
+
+/* ==========================================================================
+   7. CORE SCROLLBAR STRIPPING SELECTORS (CENTRAL FRAMEWORK ONLY)
+   ========================================================================== */
+.content-scrollpane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+.content-scrollpane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Completely drop spatial footprint of workspace scrollbars without harming inner views */
+.content-scrollpane > .scroll-bar {
+    -fx-background-color: transparent !important;
+    -fx-max-width: 0 !important;
+    -fx-max-height: 0 !important;
+    -fx-opacity: 0 !important;
+    -fx-visible: false !important;
+}
+
+
+/* ==========================================================================
+   8. MODERN DATA TABLEVIEW HOVER COMPONENT RULES
    ========================================================================== */
 .data-table {
     -fx-background-color: transparent;
@@ -301,8 +350,6 @@
     -fx-border-radius: 8;
     -fx-background-radius: 8;
 }
-
-/* Header Column Strip Styling */
 .data-table .column-header-background {
     -fx-background-color: #F8FAFC;
     -fx-padding: 8 0;
@@ -318,8 +365,6 @@
     -fx-font-weight: bold;
     -fx-text-transform: uppercase;
 }
-
-/* Individual Cell Rows Styling */
 .data-table .table-row-cell {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #F1F5F9;
@@ -334,208 +379,37 @@
     -fx-font-size: 13px;
     -fx-font-weight: 500;
 }
-
-
-
-/* Disables native ugly empty placeholder lines */
 .data-table .placeholder .label {
     -fx-text-fill: #94A3B8;
 }
 
-.btn-process {
-    -fx-background-color: #3B82F6;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
+/* Shared micro typography mappings */
+.logo-area        { -fx-padding: 0 0 10 0; }
+.logo-text        { -fx-text-fill: #1E293B; -fx-font-size: 20px; -fx-font-weight: bold; }
+.dashboard-title  { -fx-text-fill: #0F172A; -fx-font-size: 28px; -fx-font-weight: bold; }
+.dashboard-subtitle { -fx-text-fill: #64748B; -fx-font-size: 14px; }
+.section-title    { -fx-text-fill: #0F172A; -fx-font-size: 28px; -fx-font-weight: bold; }
+.section-subtitle { -fx-text-fill: #64748B; -fx-font-size: 14px; }
 
-    -fx-background-radius: 999;
-    -fx-border-radius: 999;
-
-    /* wider + more breathing room */
-    -fx-padding: 10 26;
-
-    -fx-cursor: hand;
+/* Re-use micro metrics icon backgrounds setups */
+.card-icon-container {
+    -fx-background-radius: 12;
+    -fx-padding: 10;
+    -fx-min-width: 44; -fx-max-width: 44;
+    -fx-min-height: 44; -fx-max-height: 44;
     -fx-alignment: center;
-
-    /* spacing between icon + text */
-    -fx-graphic-text-gap: 25;
-    -fx-font-size: 15px;
 }
-
-.btn-process:hover {
-    -fx-background-color: #2563EB;
-}
-
-/* ---------------- TRASH BUTTON ---------------- */
-
-.btn-clear {
-    -fx-background-color: #F1F5F9;   /* neutral gray */
-    -fx-text-fill: #64748B;          /* muted gray icon */
-
-    -fx-background-radius: 999;
-    -fx-border-radius: 999;
-
-    -fx-border-color: #E2E8F0;
-    -fx-border-width: 1;
-
-    -fx-cursor: hand;
-    -fx-alignment: center;
-
-    /* square pill button */
-    -fx-min-width: 44;
-    -fx-min-height: 44;
-    -fx-max-width: 44;
-    -fx-max-height: 44;
-}
-
-.btn-clear:hover {
-    -fx-background-color: #FEE2E2;   /* soft red background */
-    -fx-text-fill: #EF4444;          /* red icon */
-    -fx-border-color: #FECACA;
-}
-
-.btn-clear:pressed {
-    -fx-background-color: #FCA5A5;
-}
-
-.btn-clear SVGPath {
-    -fx-stroke: #66777D;   /* default gray */
-    -fx-fill: transparent;
-}
-
-.btn-clear:hover SVGPath {
-    -fx-stroke: #EF4444;   /* red on hover */
-}
-
-/* ==========================================================================
-   Header Window Controls Styling 
-   ========================================================================== */
-
-/* Base Window Button Setup */
-.window-control-btn {
-    -fx-background-color: transparent;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-cursor: hand;
-    -fx-alignment: center;
-    -fx-padding: 0;
-}
-
-/* Base Vector Icon Defaults */
-.window-control-btn .window-control-icon {
-    -fx-stroke: #64748B;  /* Professional slate muted gray */
+.card-svg-icon {
     -fx-stroke-width: 2;
     -fx-fill: transparent;
     -fx-stroke-line-cap: round;
     -fx-stroke-line-join: round;
 }
-
-/* Minimize Button Hover States */
-.btn-minimize:hover {
-    -fx-background-color: #F1F5F9; /* Muted gray layer */
-}
-.btn-minimize:hover .window-control-icon {
-    -fx-stroke: #1E293B; /* High-contrast active dark slate */
-}
-
-/* Exit Button Hover States */
-.btn-exit:hover {
-    -fx-background-color: #FEE2E2; /* Delicate soft warning red background */
-}
-.btn-exit:hover .window-control-icon {
-    -fx-stroke: #EF4444; /* Clean crimson destructive alert color */
-}
-
-/* Click/Pressed Actions */
-.btn-minimize:pressed {
-    -fx-background-color: #E2E8F0;
-}
-.btn-exit:pressed {
-    -fx-background-color: #FCA5A5;
-}
-
-/* ==========================================
-   Cleaned Base Viewport & Reset Configurations
-   ========================================== */
-.main-container {
-    -fx-background-color: #F8FAFC;
-    -fx-font-family: "Montserrat";
-    /* Enforces that the main view context respects hard window boundary ceilings */
-    -fx-max-height: -fx-inherited; 
-}
-
-/* Dashboard Inner Body Workspace Layout Adjustments */
-.dashboard-body {
-    -fx-padding: 40;
-    -fx-background-color: transparent;
-    /* Prevents inner VBox contents from overflowing beyond view boundaries */
-    -fx-max-height: infinity; 
-}
-
-/* ==========================================
-   Cleaned / Deprecated Scroll Configurations 
-   ========================================== */
-/* Clear out previous `.content-scrollpane` definitions and force hide any residual elements */
-.scroll-bar,
-.scroll-bar .track,
-.scroll-bar .thumb,
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-max-width: 0;
-    -fx-max-height: 0;
-    -fx-opacity: 0;
-    -fx-visible: false;
-}
-
-/* Base Shared Properties for Image Background Cards */
-.image-card {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 24; /* Elevated corner smoothness for larger cards */
-    -fx-border-radius: 24;
-    
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: contain; 
-    
-    /* Strict sizing locks for 560x350 structure */
-    -fx-min-width: 560px;
-    -fx-pref-width: 560px;
-    -fx-max-width: 560px;
-    
-    -fx-min-height: 350px;
-    -fx-pref-height: 350px;
-    -fx-max-height: 350px;
-    
-    -fx-effect: dropshadow(three-pass-box, rgba(148, 163, 184, 0.06), 20, 0, 0, 6);
-}
-
-/* Individual Card Slices Mapping Source Paths */
-.img-card-token {
-    -fx-background-image: url("/images/card-bg-token.png");
-}
-
-.img-card-lemma {
-    -fx-background-image: url("/images/card-bg-lemma.png");
-}
-
-.img-card-pos {
-    -fx-background-image: url("/images/card-bg-pos.png");
-}
-
-.img-card-sentiment {
-    -fx-background-image: url("/images/card-bg-sentiment.png");
-}
-
-/* Re-verifying Button specs stay matching your primary styles */
-.feature-card-btn {
-    -fx-background-radius: 99;
-    -fx-padding: 10 20;
-    -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-cursor: hand;
-}
-.f-btn-token     { -fx-background-color: #E8FBF0; -fx-text-fill: #15803D; }
-.f-btn-lemma     { -fx-background-color: #E0F2FE; -fx-text-fill: #0369A1; }
-.f-btn-pos       { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
-.f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
+.icon-bg-token     { -fx-background-color: #E8FBF0; }
+.stroke-token      { -fx-stroke: #22C55E; }
+.icon-bg-lemma     { -fx-background-color: #E0F2FE; }
+.stroke-lemma      { -fx-stroke: #3B82F6; }
+.icon-bg-pos       { -fx-background-color: #F3E8FF; }
+.stroke-pos        { -fx-stroke: #A855F7; }
+.icon-bg-sentiment { -fx-background-color: #FFEDD5; }
+.stroke-sentiment { -fx-stroke: #F97316; }

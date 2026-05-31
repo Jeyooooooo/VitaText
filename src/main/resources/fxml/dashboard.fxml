@@ -91,29 +91,65 @@
       
       <AnchorPane styleClass="image-card, img-card-token" GridPane.columnIndex="0" GridPane.rowIndex="0">
          <children>
-            <Button fx:id="btnDashTokenization" text="↗  Analyze Tokens" styleClass="feature-card-btn, f-btn-token"
-                        AnchorPane.leftAnchor="24.0" AnchorPane.bottomAnchor="24.0"/>
+            <Button fx:id="btnDashTokenization" 
+                    text="Analyze Tokens" 
+                    styleClass="feature-card-btn, f-btn-token"
+                    contentDisplay="LEFT"
+                    graphicTextGap="8"
+                    AnchorPane.leftAnchor="32.0" 
+                    AnchorPane.bottomAnchor="32.0">
+               <graphic>
+                  <SVGPath content="M7 7h10v10 M7 17L17 7" styleClass="btn-arrow-icon, arrow-stroke-token"/>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
 
       <AnchorPane styleClass="image-card, img-card-lemma" GridPane.columnIndex="1" GridPane.rowIndex="0">
          <children>
-            <Button fx:id="btnDashLemmatization" text="↗  View Lemmas" styleClass="feature-card-btn, f-btn-lemma"
-                        AnchorPane.leftAnchor="24.0" AnchorPane.bottomAnchor="24.0"/>
+            <Button fx:id="btnDashLemmatization" 
+                    text="View Lemmas" 
+                    styleClass="feature-card-btn, f-btn-lemma"
+                    contentDisplay="LEFT"
+                    graphicTextGap="8"
+                    AnchorPane.leftAnchor="32.0" 
+                    AnchorPane.bottomAnchor="32.0">
+               <graphic>
+                  <SVGPath content="M7 7h10v10 M7 17L17 7" styleClass="btn-arrow-icon, arrow-stroke-lemma"/>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
 
       <AnchorPane styleClass="image-card, img-card-pos" GridPane.columnIndex="0" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="btnDashPosTagging" text="↗  Inspect Tags" styleClass="feature-card-btn, f-btn-pos"
-                        AnchorPane.leftAnchor="24.0" AnchorPane.bottomAnchor="24.0"/>
+            <Button fx:id="btnDashPosTagging" 
+                    text="Inspect Tags" 
+                    styleClass="feature-card-btn, f-btn-pos"
+                    contentDisplay="LEFT"
+                    graphicTextGap="8"
+                    AnchorPane.leftAnchor="32.0" 
+                    AnchorPane.bottomAnchor="32.0">
+               <graphic>
+                  <SVGPath content="M7 7h10v10 M7 17L17 7" styleClass="btn-arrow-icon, arrow-stroke-pos"/>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
 
       <AnchorPane styleClass="image-card, img-card-sentiment" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="btnDashSentiment" text="↗  Analyze Mood" styleClass="feature-card-btn, f-btn-sentiment"
-                        AnchorPane.leftAnchor="24.0" AnchorPane.bottomAnchor="24.0"/>
+            <Button fx:id="btnDashSentiment" 
+                    text="Analyze Mood" 
+                    styleClass="feature-card-btn, f-btn-sentiment"
+                    contentDisplay="LEFT"
+                    graphicTextGap="8"
+                    AnchorPane.leftAnchor="32.0" 
+                    AnchorPane.bottomAnchor="32.0">
+               <graphic>
+                  <SVGPath content="M7 7h10v10 M7 17L17 7" styleClass="btn-arrow-icon, arrow-stroke-sentiment"/>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
 
