@@ -3,13 +3,21 @@
     -fx-font-family: "Montserrat";
 }
 
-.mainFxmlClass {
+.app-header {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 12 20;
+    -fx-alignment: center-left;
+
+    /* subtle separation from content */
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 0 1 0;
 
 }
+
 /* Base Root Variables & Reset */
 .main-container {
     -fx-background-color: #F8FAFC;
-    -fx-font-family: 'Montserrat', system-ui, sans-serif;
+    -fx-font-family: "Montserrat";
 }
 
 /* ScrollPane customizations */
@@ -22,13 +30,13 @@
     -fx-background-color: transparent;
 }
 
-/* Sidebar Styling */
 .sidebar {
     -fx-background-color: #FFFFFF;
     -fx-padding: 24;
     -fx-border-color: #E2E8F0;
     -fx-border-width: 0 1 0 0;
 }
+
 .logo-area {
     -fx-padding: 0 0 10 0;
 }
@@ -259,12 +267,6 @@
 /* Disables native ugly empty placeholder lines */
 .data-table .placeholder .label {
     -fx-text-fill: #94A3B8;
-}
-
-.sidebar {
-    -fx-background-color: #FFFFFF; /* Or your preferred color */
-    -fx-padding: 15; 
-    -fx-margin: 0;
 }
 
 /* Add this to your style.css */

@@ -10,85 +10,175 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
 
-<BorderPane fx:controller="com.mycompany.nlp_finalproj.AppController" 
-            stylesheets="@../styles/style.css" 
-            styleClass="main-container" 
-            xmlns="http://javafx.com/javafx/17" 
+<BorderPane fx:controller="com.mycompany.nlp_finalproj.AppController"
+            stylesheets="@../styles/style.css"
+            styleClass="main-container"
+            xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1">
-   
-   <left>
-      <VBox prefWidth="280.0" styleClass="sidebar" spacing="20.0">
-          <padding>
-              <Insets top="30.0" right="20.0" bottom="20.0" left="20.0"/>
-          </padding>
-         <children>
-            <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="logo-area">
-               <children>
-                    <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                        <image>
-                            <Image url="/images/vitatext-logo.png"/>
-                        </image>
-                    </ImageView>
-                  <Label text="VitaText" styleClass="logo-text"/>
-               </children>
-            </HBox>
-            
-            <VBox spacing="8.0" styleClass="sidebar-section">
-               <children>
-                  <Label text="CORPUS INPUT" styleClass="section-header"/>
-                  <TextArea fx:id="corpusInput" wrapText="true" prefHeight="150.0" styleClass="corpus-textarea"/>
-                  <HBox spacing="10.0">
-                     <children>
-                        <Button text="▶ Process" styleClass="btn-process" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#handleProcessExecution"/>
-                        <Button text="🗑" styleClass="btn-clear" onAction="#handleClearInput" prefHeight="35.0" minHeight="35.0" prefWidth="50.0" minWidth="50.0"/>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            
-            <VBox spacing="5.0" styleClass="sidebar-section">
-               <children>
-                  <Label text="NAVIGATION" styleClass="section-header"/>
-                  <Button fx:id="btnDashboard" text="⊞  Dashboard" styleClass="nav-button" maxWidth="Infinity" onAction="#handleNavigation"/>
-               </children>
-            </VBox>
-            
-            <VBox spacing="5.0" styleClass="sidebar-section">
-               <children>
-                  <Label text="NLP FEATURES" styleClass="section-header"/>
-                  <Button fx:id="btnTokenization" text="🏷  Tokenization" styleClass="nav-button" maxWidth="Infinity" onAction="#handleNavigation"/>
-                  <Button fx:id="btnLemmatization" text="☷  Lemmatization" styleClass="nav-button" maxWidth="Infinity" onAction="#handleNavigation"/>
-                  <Button fx:id="btnPosTagging" text="Ⓐ  POS Tagging" styleClass="nav-button" maxWidth="Infinity" onAction="#handleNavigation"/>
-                  <Button fx:id="btnSentiment" text="☺  Sentiment Analysis" styleClass="nav-button" maxWidth="Infinity" onAction="#handleNavigation"/>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </left>
 
-   <center>
-      <VBox>
-         <HBox alignment="CENTER_RIGHT" spacing="8.0" style="-fx-padding: 12 16 0 0;">
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              styleClass="app-header">
+
             <children>
-               <Button fx:id="btnMinimize" text="–" onAction="#handleMinimizeWindow"
-                       style="-fx-background-color: #E2E8F0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 6; -fx-min-width: 28; -fx-max-width: 28; -fx-min-height: 28; -fx-max-height: 28; -fx-cursor: hand;"/>
-               <Button fx:id="btnExit" text="✕" onAction="#handleExitWindow"
-                       style="-fx-background-color: #FEE2E2; -fx-text-fill: #EF4444; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 6; -fx-min-width: 28; -fx-max-width: 28; -fx-min-height: 28; -fx-max-height: 28; -fx-cursor: hand;"/>
-            </children>
-         </HBox>
 
-         <ScrollPane fitToWidth="true" styleClass="content-scrollpane" VBox.vgrow="ALWAYS">
+                <!-- Left side -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <ImageView fitHeight="40"
+                                   fitWidth="40"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../images/vitatext-logo.png"/>
+                            </image>
+                        </ImageView>
+
+                        <Label text="VitaText"
+                               styleClass="logo-text"/>
+                    </children>
+                </HBox>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Right side -->
+                <HBox spacing="8">
+                    <children>
+                        <Button fx:id="btnMinimize"
+                                text="–"
+                                onAction="#handleMinimizeWindow"/>
+
+                        <Button fx:id="btnExit"
+                                text="✕"
+                                onAction="#handleExitWindow"/>
+                    </children>
+                </HBox>
+
+            </children>
+        </HBox>
+    </top>
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+    <VBox prefWidth="280"
+          spacing="20"
+          styleClass="sidebar">
+
+        <children>
+
+            <!-- CORPUS INPUT -->
+            <VBox spacing="8">
+
+                <children>
+
+                    <Label text="CORPUS INPUT"
+                           styleClass="section-header"/>
+
+                    <TextArea fx:id="corpusInput"
+                              wrapText="true"
+                              prefHeight="150"
+                              styleClass="corpus-textarea"/>
+
+                    <HBox spacing="10">
+
+                        <children>
+
+                            <Button text="▶ Process"
+                                    styleClass="btn-process"
+                                    maxWidth="Infinity"
+                                    HBox.hgrow="ALWAYS"
+                                    onAction="#handleProcessExecution"/>
+
+                            <Button text="🗑"
+                                    styleClass="btn-clear"
+                                    prefWidth="50"
+                                    prefHeight="35"
+                                    onAction="#handleClearInput"/>
+
+                        </children>
+                    </HBox>
+
+                </children>
+            </VBox>
+
+            <!-- NAVIGATION -->
+            <VBox spacing="5">
+
+                <children>
+
+                    <Label text="NAVIGATION"
+                           styleClass="section-header"/>
+
+                    <Button fx:id="btnDashboard"
+                            text="⊞ Dashboard"
+                            styleClass="nav-button"
+                            maxWidth="Infinity"
+                            onAction="#handleNavigation"/>
+
+                </children>
+            </VBox>
+            
+            <!-- NLP FEATURES -->
+            <VBox spacing="5">
+
+                <children>
+
+                    <Label text="NLP FEATURES"
+                           styleClass="section-header"/>
+
+                    <Button fx:id="btnTokenization"
+                            text="🏷 Tokenization"
+                            styleClass="nav-button"
+                            maxWidth="Infinity"
+                            onAction="#handleNavigation"/>
+
+                    <Button fx:id="btnLemmatization"
+                            text="☷ Lemmatization"
+                            styleClass="nav-button"
+                            maxWidth="Infinity"
+                            onAction="#handleNavigation"/>
+
+                    <Button fx:id="btnPosTagging"
+                            text="Ⓐ POS Tagging"
+                            styleClass="nav-button"
+                            maxWidth="Infinity"
+                            onAction="#handleNavigation"/>
+
+                    <Button fx:id="btnSentiment"
+                            text="☺ Sentiment Analysis"
+                            styleClass="nav-button"
+                            maxWidth="Infinity"
+                            onAction="#handleNavigation"/>
+                </children>
+            </VBox>
+
+        </children>
+    </VBox>
+</left>
+
+    <!-- CENTER CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true"
+                    styleClass="content-scrollpane">
+
             <content>
-               <VBox fx:id="contentArea" spacing="25.0" styleClass="dashboard-body">
-                  <children>
-                     <fx:include fx:id="dashboardView" source="dashboard.fxml" visible="true" managed="true"/>
-                     <fx:include fx:id="tokenizationView" source="tokenization.fxml" visible="false" managed="false"/>
-                     <fx:include fx:id="lemmatizationView" source="lemmatization.fxml" visible="false" managed="false"/>
-                  </children>
-               </VBox>
+                <VBox fx:id="contentArea"
+                      spacing="25"
+                      styleClass="dashboard-body">
+
+                    <children>
+                        <fx:include source="dashboard.fxml"/>
+                        <fx:include source="tokenization.fxml"/>
+                        <fx:include source="lemmatization.fxml"/>
+                    </children>
+
+                </VBox>
             </content>
-         </ScrollPane>
-      </VBox>
-   </center>
+
+        </ScrollPane>
+    </center>
+
 </BorderPane>
