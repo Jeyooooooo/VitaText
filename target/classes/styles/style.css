@@ -487,3 +487,55 @@
     -fx-opacity: 0;
     -fx-visible: false;
 }
+
+/* Base Shared Properties for Image Background Cards */
+.image-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 24; /* Elevated corner smoothness for larger cards */
+    -fx-border-radius: 24;
+    
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain; 
+    
+    /* Strict sizing locks for 560x350 structure */
+    -fx-min-width: 560px;
+    -fx-pref-width: 560px;
+    -fx-max-width: 560px;
+    
+    -fx-min-height: 350px;
+    -fx-pref-height: 350px;
+    -fx-max-height: 350px;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(148, 163, 184, 0.06), 20, 0, 0, 6);
+}
+
+/* Individual Card Slices Mapping Source Paths */
+.img-card-token {
+    -fx-background-image: url("/images/card-bg-token.png");
+}
+
+.img-card-lemma {
+    -fx-background-image: url("/images/card-bg-lemma.png");
+}
+
+.img-card-pos {
+    -fx-background-image: url("/images/card-bg-pos.png");
+}
+
+.img-card-sentiment {
+    -fx-background-image: url("/images/card-bg-sentiment.png");
+}
+
+/* Re-verifying Button specs stay matching your primary styles */
+.feature-card-btn {
+    -fx-background-radius: 99;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.f-btn-token     { -fx-background-color: #E8FBF0; -fx-text-fill: #15803D; }
+.f-btn-lemma     { -fx-background-color: #E0F2FE; -fx-text-fill: #0369A1; }
+.f-btn-pos       { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
+.f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
