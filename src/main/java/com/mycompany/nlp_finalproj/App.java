@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 
 /**
@@ -18,6 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Point explicitly to your FXML layout file
+        loadFonts();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/fxml.fxml"));
         scene = new Scene(root);
         
@@ -36,4 +38,15 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+    private void loadFonts() {
+        String[] fonts = {
+            "/font/Montserrat-Regular.ttf",
+            "/font/Montserrat-Bold.ttf",
+        };
+
+        for (String font : fonts) {
+            Font.loadFont(getClass().getResourceAsStream(font), 14);
+        }
+    }
+    
 }

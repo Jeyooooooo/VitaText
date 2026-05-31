@@ -1,6 +1,7 @@
-/*
- * Empty Stylesheet file.
- */
+
+.root {
+    -fx-font-family: "Montserrat";
+}
 
 .mainFxmlClass {
 
@@ -8,7 +9,7 @@
 /* Base Root Variables & Reset */
 .main-container {
     -fx-background-color: #F8FAFC;
-    -fx-font-family: 'Segoe UI', system-ui, sans-serif;
+    -fx-font-family: 'Montserrat', system-ui, sans-serif;
 }
 
 /* ScrollPane customizations */
