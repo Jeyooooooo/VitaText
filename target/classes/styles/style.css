@@ -66,7 +66,7 @@
 
 .sidebar {
     -fx-background-color: #FFFFFF;
-    -fx-padding: 24;
+    -fx-padding: 24 16;
     -fx-border-color: #E2E8F0;
     -fx-border-width: 0 1 0 0;
 }
@@ -85,9 +85,10 @@
 }
 
 .section-header {
-    -fx-text-fill: #94A3B8;
-    -fx-font-size: 11px;
+    -fx-text-fill: #64748B; /* Darker, clear mid-tone gray */
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
+    -fx-padding: 10 0 6 12;
     -fx-letter-spacing: 1px;
 }
 
@@ -148,22 +149,39 @@
 /* Sidebar Navigation Items */
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #64748B;
+    -fx-text-fill: #334155; /* Refined slate dark gray color */
     -fx-alignment: center-left;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-padding: 12 16;
-    -fx-background-radius: 10;
+    -fx-padding: 14 16;
+    -fx-background-radius: 14; /* Smooth pill curve layout */
     -fx-max-width: infinity;
     -fx-cursor: hand;
 }
+.nav-button .nav-icon {
+    -fx-stroke: #334155;
+    -fx-stroke-width: 2;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+
 .nav-button:hover {
     -fx-background-color: #F1F5F9;
     -fx-text-fill: #1E293B;
 }
+
+.nav-button:hover .nav-icon {
+    -fx-stroke: #1E293B;
+}
+
 .active-nav {
-    -fx-background-color: #E0F2FE;
-    -fx-text-fill: #0369A1;
+    -fx-background-color: #D6EDFF; /* Light-blue accent pill color background */
+    -fx-text-fill: #1E293B;
+}
+
+.active-nav .nav-icon {
+    -fx-stroke: #1E293B; /* Accent icon retains crisp dark contrast match */
 }
 
 /* Dashboard Inner Body Workspace */

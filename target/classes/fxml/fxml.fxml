@@ -131,54 +131,81 @@
 
             <!-- NAVIGATION -->
             <VBox spacing="5">
+    <children>
+        <Label text="NAVIGATION" styleClass="section-header"/>
 
-                <children>
+        <Button fx:id="btnDashboard"
+                text="Dashboard"
+                styleClass="nav-button, active-nav"
+                maxWidth="Infinity"
+                contentDisplay="LEFT"
+                graphicTextGap="16"
+                onAction="#handleNavigation">
+            <graphic>
+                <SVGPath content="M3 4a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm11 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zM3 17a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"
+                         styleClass="nav-icon"/>
+            </graphic>
+        </Button>
+    </children>
+</VBox>
 
-                    <Label text="NAVIGATION"
-                           styleClass="section-header"/>
+<VBox spacing="5">
+    <children>
+        <Label text="NLP FEATURES" styleClass="section-header"/>
 
-                    <Button fx:id="btnDashboard"
-                            text="⊞ Dashboard"
-                            styleClass="nav-button"
-                            maxWidth="Infinity"
-                            onAction="#handleNavigation"/>
+        <Button fx:id="btnTokenization"
+                text="Tokenization"
+                styleClass="nav-button"
+                maxWidth="Infinity"
+                contentDisplay="LEFT"
+                graphicTextGap="16"
+                onAction="#handleNavigation">
+            <graphic>
+                <SVGPath content="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z M7 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+                         styleClass="nav-icon"/>
+            </graphic>
+        </Button>
 
-                </children>
-            </VBox>
-            
-            <!-- NLP FEATURES -->
-            <VBox spacing="5">
+        <Button fx:id="btnLemmatization"
+                text="Lemmatization"
+                styleClass="nav-button"
+                maxWidth="Infinity"
+                contentDisplay="LEFT"
+                graphicTextGap="16"
+                onAction="#handleNavigation">
+            <graphic>
+                <SVGPath content="M15 3v18 M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M21 9H3 M21 15H3"
+                         styleClass="nav-icon"/>
+            </graphic>
+        </Button>
 
-                <children>
+        <Button fx:id="btnPosTagging"
+                text="POS Tagging"
+                styleClass="nav-button"
+                maxWidth="Infinity"
+                contentDisplay="LEFT"
+                graphicTextGap="16"
+                onAction="#handleNavigation">
+            <graphic>
+                <SVGPath content="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20 M8 13l4-7 4 7 M9.1 11h5.7"
+                         styleClass="nav-icon"/>
+            </graphic>
+        </Button>
 
-                    <Label text="NLP FEATURES"
-                           styleClass="section-header"/>
-
-                    <Button fx:id="btnTokenization"
-                            text="🏷 Tokenization"
-                            styleClass="nav-button"
-                            maxWidth="Infinity"
-                            onAction="#handleNavigation"/>
-
-                    <Button fx:id="btnLemmatization"
-                            text="☷ Lemmatization"
-                            styleClass="nav-button"
-                            maxWidth="Infinity"
-                            onAction="#handleNavigation"/>
-
-                    <Button fx:id="btnPosTagging"
-                            text="Ⓐ POS Tagging"
-                            styleClass="nav-button"
-                            maxWidth="Infinity"
-                            onAction="#handleNavigation"/>
-
-                    <Button fx:id="btnSentiment"
-                            text="☺ Sentiment Analysis"
-                            styleClass="nav-button"
-                            maxWidth="Infinity"
-                            onAction="#handleNavigation"/>
-                </children>
-            </VBox>
+        <Button fx:id="btnSentiment"
+                text="Sentiment Analysis"
+                styleClass="nav-button"
+                maxWidth="Infinity"
+                contentDisplay="LEFT"
+                graphicTextGap="16"
+                onAction="#handleNavigation">
+            <graphic>
+                <SVGPath content="M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z M15 3v5a1 1 0 0 0 1 1h5 M8 13h.01 M16 13h.01 M10 16s.8 1 2 1c1.3 0 2-1 2-1"
+                         styleClass="nav-icon"/>
+            </graphic>
+        </Button>
+    </children>
+</VBox>
 
         </children>
     </VBox>
