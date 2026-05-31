@@ -492,6 +492,7 @@
     /* Transparent border trick to force perfect 8px margin spacing inside TextFlow views */
     -fx-border-color: transparent;
     -fx-border-width: 0 8 8 0; 
+    -fx-margin: 4px;
 }
 
 /* Solid background palettes without visible borders */
