@@ -47,17 +47,35 @@
                 <Region HBox.hgrow="ALWAYS"/>
 
                 <!-- Right side -->
-                <HBox spacing="8">
-                    <children>
-                        <Button fx:id="btnMinimize"
-                                text="–"
-                                onAction="#handleMinimizeWindow"/>
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+    <children>
+        <Button fx:id="btnMinimize"
+                styleClass="window-control-btn, btn-minimize"
+                prefWidth="32"
+                prefHeight="32"
+                minWidth="32"
+                minHeight="32"
+                onAction="#handleMinimizeWindow">
+            <graphic>
+                <SVGPath content="M5 12h14"
+                         styleClass="window-control-icon"/>
+            </graphic>
+        </Button>
 
-                        <Button fx:id="btnExit"
-                                text="✕"
-                                onAction="#handleExitWindow"/>
-                    </children>
-                </HBox>
+        <Button fx:id="btnExit"
+                styleClass="window-control-btn, btn-exit"
+                prefWidth="32"
+                prefHeight="32"
+                minWidth="32"
+                minHeight="32"
+                onAction="#handleExitWindow">
+            <graphic>
+                <SVGPath content="M18 6L6 18 M6 6l12 12"
+                         styleClass="window-control-icon"/>
+            </graphic>
+        </Button>
+    </children>
+</HBox>
 
             </children>
         </HBox>
@@ -92,7 +110,8 @@
         <Button styleClass="btn-process"
                 text="Process"
                 maxWidth="Infinity"
-                HBox.hgrow="ALWAYS">
+                HBox.hgrow="ALWAYS"
+        onAction="#handleProcessExecution">
 
             <graphic>
                 <SVGPath content="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"

@@ -405,3 +405,50 @@
 .btn-clear:hover SVGPath {
     -fx-stroke: #EF4444;   /* red on hover */
 }
+
+/* ==========================================================================
+   Header Window Controls Styling 
+   ========================================================================== */
+
+/* Base Window Button Setup */
+.window-control-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-padding: 0;
+}
+
+/* Base Vector Icon Defaults */
+.window-control-btn .window-control-icon {
+    -fx-stroke: #64748B;  /* Professional slate muted gray */
+    -fx-stroke-width: 2;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+
+/* Minimize Button Hover States */
+.btn-minimize:hover {
+    -fx-background-color: #F1F5F9; /* Muted gray layer */
+}
+.btn-minimize:hover .window-control-icon {
+    -fx-stroke: #1E293B; /* High-contrast active dark slate */
+}
+
+/* Exit Button Hover States */
+.btn-exit:hover {
+    -fx-background-color: #FEE2E2; /* Delicate soft warning red background */
+}
+.btn-exit:hover .window-control-icon {
+    -fx-stroke: #EF4444; /* Clean crimson destructive alert color */
+}
+
+/* Click/Pressed Actions */
+.btn-minimize:pressed {
+    -fx-background-color: #E2E8F0;
+}
+.btn-exit:pressed {
+    -fx-background-color: #FCA5A5;
+}
