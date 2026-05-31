@@ -12,7 +12,7 @@
    <children>
       <VBox spacing="5.0">
          <children>
-            <Label text="Dashboard" styleClass="dashboard-title"/>
+            <Label text="Dasbord" styleClass="dashboard-title"/>
             <Label text="Paste your corpus in the sidebar, hit Process, then explore each tab." styleClass="dashboard-subtitle"/>
          </children>
       </VBox>
