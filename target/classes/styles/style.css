@@ -20,14 +20,48 @@
     -fx-font-family: "Montserrat";
 }
 
-/* ScrollPane customizations */
+/* =========================
+   ScrollPane base cleanup
+   ========================= */
 .content-scrollpane {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-padding: 0;
 }
+
 .content-scrollpane .viewport {
     -fx-background-color: transparent;
+}
+
+/* =========================
+   ScrollBar (both vertical & horizontal)
+   ========================= */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* track (background line) */
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* thumb (the draggable part) */
+.scroll-bar .thumb {
+    -fx-background-color: #CBD5E1;  /* soft gray */
+    -fx-background-radius: 10;
+}
+
+/* hover effect */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #94A3B8;
+}
+
+/* arrows (hide them for modern UI) */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: "";
+    -fx-opacity: 0;
 }
 
 .sidebar {
@@ -49,6 +83,7 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
+
 .section-header {
     -fx-text-fill: #94A3B8;
     -fx-font-size: 11px;
@@ -60,16 +95,45 @@
     -fx-font-weight: bold;
 }
 
-/* Input Fields & Sidebar Controls */
 .corpus-textarea {
-    -fx-text-fill: #334155;
-    -fx-border-color: #E2E8F0;
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #343235;
+    
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: normal;
+    -fx-font-size: 15px;
+
+    -fx-line-spacing: 4.5;
+
+    -fx-border-color: #D2D2D2;
     -fx-border-radius: 12;
     -fx-background-radius: 12;
+
+    -fx-padding: 10;
 }
+
+/* 🔥 IMPORTANT: this is the REAL TextArea skin */
 .corpus-textarea .content {
-    -fx-background-color: #F8FAFC;
+    -fx-background-color: transparent;
 }
+
+/* 🔥 removes scrollpane background */
+.corpus-textarea .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+/* 🔥 removes viewport background */
+.corpus-textarea .viewport {
+    -fx-background-color: transparent;
+}
+
+/* 🔥 forces font inside editor */
+.corpus-textarea .text {
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 13px;
+}
+
 .btn-process {
     -fx-background-color: #3B82F6;
     -fx-text-fill: white;
