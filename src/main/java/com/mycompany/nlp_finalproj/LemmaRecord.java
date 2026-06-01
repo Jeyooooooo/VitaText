@@ -13,7 +13,6 @@ public class LemmaRecord {
         this.lemma = lemma;
     }
 
-    // --- JavaFX explicitly searches for these exact names (Case-Sensitive!) ---
     public String getId() { return id; }
     public String getOriginalWord() { return originalWord; }
     public String getPosTag() { return posTag; }

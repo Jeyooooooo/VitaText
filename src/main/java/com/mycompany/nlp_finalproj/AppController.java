@@ -26,26 +26,21 @@ public class AppController {
     @FXML private VBox contentArea; 
     @FXML private TextArea corpusInput; 
 
-    // Layout tracking handles for tokenization injection points
     @FXML private VBox sentenceRowsContainer;
     @FXML private TextFlow wordTokenFlowContainer;
 
-    // --- LEMMATIZATION LINKING STRIPS ---
     private TableView<LemmaRecord> lemmatizationTable;
     private TableColumn<LemmaRecord, String> colId;
     private TableColumn<LemmaRecord, String> colOriginalWord;
     private TableColumn<LemmaRecord, String> colPosTag;
     private TableColumn<LemmaRecord, String> colLemma;
 
-    // --- POS TAGGING LINKING STRIPS ---
     private TableView<PosRecord> posTable;
     private TableColumn<PosRecord, String> colPosId;
     private TableColumn<PosRecord, String> colPosWord;
     private TableColumn<PosRecord, String> colPosTagCode;
     private TableColumn<PosRecord, String> colPosDesc;
 
-// --- SENTIMENT ANALYSIS LINKING STRIPS ---
-    // ⚠️ CRITICAL NAMING FIX: Changed from sentimentPerformanceTable to sentimentMetricsTable
     private TableView<SentimentResult> sentimentMetricsTable; 
     private TableColumn<SentimentResult, String> colSentMetric;
     private TableColumn<SentimentResult, String> colSentScore;
@@ -58,22 +53,18 @@ public class AppController {
     private ProgressBar progressSentimentIndicator;
     private TextArea txtTrainingConsole;
 
-    // Top Summary Stat Chip Card Node Injections (dashboard.fxml)
     @FXML private HBox card1, card2, card3, card4;
     @FXML private Label icon1, icon2, icon3, icon4;
 
-    // Sidebar Navigation UI Controls
     @FXML private Button btnDashboard;
     @FXML private Button btnTokenization, btnDashTokenization;
     @FXML private Button btnLemmatization, btnDashLemmatization;
     @FXML private Button btnPosTagging, btnDashPosTagging;
     @FXML private Button btnSentiment, btnDashSentiment;
     @FXML private Button btnProcess;
-    // --- TOP WINDOW SYSTEM CONTROLS ---
     @FXML private Button btnMinimize;
     @FXML private Button btnExit;
     
-    // --- TOKENIZATION LINKING STRIPS ---
     private Label lblCountSentences;
     private Label lblCountWords;
     private Label lblCountPunctuation;
@@ -198,10 +189,8 @@ public void handleNavigation(ActionEvent event) {
             runPosTaggingEngine(rawText);
         }
         else if ("sentiment.fxml".equals(currentActiveView)) {
-                    // Synchronize Sentiment UI handles safely
                     syncSentimentUIComponents();
 
-                    // Execute the dynamic processing engine with no column lookup overrides
                     runSentimentAnalysisEngine(rawText);
         }
     }
@@ -216,7 +205,6 @@ public void handleNavigation(ActionEvent event) {
             if (lblNegativePercent == null) lblNegativePercent = (Label) contentArea.lookup("#lblNegativePercent");
             if (progressSentimentIndicator == null) progressSentimentIndicator = (ProgressBar) contentArea.lookup("#progressSentimentIndicator");
 
-            // Find only the parent table container from the active layout hierarchy
             if (sentimentMetricsTable == null) {
                 sentimentMetricsTable = (TableView<SentimentResult>) contentArea.lookup("#sentimentMetricsTable");
             }
@@ -225,11 +213,9 @@ public void handleNavigation(ActionEvent event) {
 private void runTokenizationEngine(String text) {
     if (sentenceRowsContainer == null || wordTokenFlowContainer == null) return;
 
-    // Reset visible lists containers
     sentenceRowsContainer.getChildren().clear();
     wordTokenFlowContainer.getChildren().clear();
 
-    // 1. Process Sentence Segmentation Boundary Math
     String[] sentences = text.trim().split("(?<=[.!?])\\s+");
     int realSentenceCount = 0;
 
@@ -252,7 +238,6 @@ private void runTokenizationEngine(String text) {
         sentenceRowsContainer.getChildren().add(row);
     }
 
-    // 2. Build Frequency Map BEFORE rendering chips
     String[] tokensRaw = text.split("\\s+|(?=[.,!?()\"';:])|(?<=[.,!?()\"';:])");
     java.util.Map<String, Integer> tokenFrequencies = new java.util.HashMap<>();
     
@@ -260,7 +245,6 @@ private void runTokenizationEngine(String text) {
     int punctuationTokensCount = 0;
     int totalValidTokens = 0;
 
-    // First pass: sanitize tokens and count occurrences
     for (String rawToken : tokensRaw) {
         String cleanToken = rawToken.trim();
         if (cleanToken.isEmpty()) continue;
@@ -275,40 +259,32 @@ private void runTokenizationEngine(String text) {
         }
     }
 
-    // SORT KEYS BY FREQUENCY DESCENDING (Highest counts first)
     java.util.List<String> uniqueTokens = new java.util.ArrayList<>(tokenFrequencies.keySet());
     uniqueTokens.sort((a, b) -> tokenFrequencies.get(b).compareTo(tokenFrequencies.get(a)));
 
-    // Second pass: Iterate over UNIQUE tokens only (Fixes Duplication!)
     for (String token : uniqueTokens) {
         boolean isPunctuation = token.matches("[.,!?()\"';:–\\-]");
         int clearOccurrenceCount = tokenFrequencies.get(token); 
 
-        // 1. Create the base chip container and add the shared base style class
         HBox tokenChip = new HBox(6);
         tokenChip.getStyleClass().add("token-badge-pill"); 
 
-        // 2. Add the contextual variant class (Green for words, Purple for punctuation)
         if (isPunctuation) {
             tokenChip.getStyleClass().add("badge-pill-punctuation");
         } else {
             tokenChip.getStyleClass().add("badge-pill-word");
         }
 
-        // 3. Create the Frequency Counter Label and add its class
         Label countLabel = new Label(String.valueOf(clearOccurrenceCount));
         countLabel.getStyleClass().add("badge-pill-count");
         
-        // 4. Create the Word Text Label and add its class
         Label textLabel = new Label(token);
         textLabel.getStyleClass().add("badge-pill-text");
 
-        // 5. Structure the tree and append it to your TextFlow container
         tokenChip.getChildren().addAll(countLabel, textLabel);
         wordTokenFlowContainer.getChildren().add(tokenChip);
     }
 
-    // 3. Inject Computed Real-time Metrics onto layout labels
     if (lblCountSentences != null) lblCountSentences.setText(String.valueOf(realSentenceCount));
     if (lblCountWords != null) lblCountWords.setText(String.valueOf(wordTokensCount));
     if (lblCountPunctuation != null) lblCountPunctuation.setText(String.valueOf(punctuationTokensCount));
@@ -320,10 +296,8 @@ private void runTokenizationEngine(String text) {
 }
 
 private void runLemmatizationEngine(String text) {
-        // FIX: Live lookup to find the table currently in the active scene graph
         TableView<LemmaRecord> lemmatizationTable = (TableView<LemmaRecord>) contentArea.lookup("#lemmatizationTable");
         
-        // Safety check: if for some reason the table isn't found, exit gracefully
         if (lemmatizationTable == null) {
             System.err.println("Error: #lemmatizationTable not found in the current view.");
             return;
@@ -395,16 +369,12 @@ private void runLemmatizationEngine(String text) {
             rowCounter++;
         }
         
-        // This now updates the fresh table retrieved from the current view
         lemmatizationTable.setItems(tableDataList);
     }
 
 private void runPosTaggingEngine(String text) {
-        // FIX: Remove dependency on the stale class-level field 'posTable'.
-        // Perform a live lookup to find the TableView in the current active view.
         TableView<PosRecord> posTable = (TableView<PosRecord>) contentArea.lookup("#posTable");
         
-        // Safety check
         if (posTable == null) {
             System.err.println("Error: #posTable not found in the current view.");
             return;
@@ -462,19 +432,14 @@ private void runPosTaggingEngine(String text) {
             rowCounter++;
         }
         
-        // Populate the fresh table instance
         posTable.setItems(tableDataList);
         
-        // Update stats labels using live lookups
         updateGridPaneStatsLabels(words.length, nnCount, vbCount, jjCount, rbCount, nnpCount, inCount, dtCount);
         System.out.println("Static POS Tagging table data pushed successfully.");
     }
 
-    /**
-     * --- ☺ DYNAMIC MULTINOMIAL NAIVE BAYES SENTIMENT CLASSIFICATION ---
-     */
+
 private void runSentimentAnalysisEngine(String text) {
-        // 1. LIVE LOOKUP: Find these components in the CURRENT scene graph
         TableView<SentimentResult> sentimentMetricsTable = (TableView<SentimentResult>) contentArea.lookup("#sentimentMetricsTable");
         TextArea txtTrainingConsole = (TextArea) contentArea.lookup("#txtTrainingConsole");
         Label lblPositivePercent = (Label) contentArea.lookup("#lblPositivePercent");
@@ -502,7 +467,6 @@ private void runSentimentAnalysisEngine(String text) {
         String[] posSeed = {"good", "great", "excellent", "happy", "balanced", "rich", "healthy", "fitness", "nutritionist", "better", "love", "amazing", "best", "nice"};
         String[] negSeed = {"struggling", "struggle", "bad", "poor", "diet", "sad", "fail", "tired", "low", "pain", "difficult", "dramatically", "horrible", "worst"};
 
-        // --- TRAINING LOGIC ---
         int totalTokensCounted = 0;
         for (ReviewRecord record : rawDataset) {
             String reviewClean = record.getReviewText().toLowerCase().replaceAll("[.,!?\"]", "");
@@ -546,7 +510,6 @@ private void runSentimentAnalysisEngine(String text) {
         double priorNeg = (double) negClassDocs / trainLimit;
         double priorNeu = (double) neuClassDocs / trainLimit;
 
-        // --- EVALUATION ---
         int truePos = 0, trueNeg = 0, falsePos = 0, falseNeg = 0, correctPredictions = 0;
         for (int i = trainLimit; i < totalRecords; i++) {
             String doc = cleanedTexts.get(i);
@@ -564,7 +527,6 @@ private void runSentimentAnalysisEngine(String text) {
         double recallVal = (truePos + falseNeg > 0) ? (double) truePos / (truePos + falseNeg) : 0.847;
         double f1Val = (precisionVal + recallVal > 0) ? 2 * ((precisionVal * recallVal) / (precisionVal + recallVal)) : 0.838;
 
-        // --- UI UPDATE: Using local handles ---
         if (sentimentMetricsTable != null) {
             sentimentMetricsTable.setItems(FXCollections.observableArrayList(
                 new SentimentResult("Accuracy", String.format("%.2f%%", accuracyVal * 100)),
@@ -575,7 +537,6 @@ private void runSentimentAnalysisEngine(String text) {
             sentimentMetricsTable.refresh();
         }
 
-        // --- INFERENCE ---
         String userTextSanitized = text.toLowerCase().replaceAll("[.,!?\"]", "");
         double logPosScore = Math.log(priorPos); double logNegScore = Math.log(priorNeg); double logNeuScore = Math.log(priorNeu);
         String[] userTokens = userTextSanitized.split("\\s+");
@@ -719,20 +680,17 @@ private void runSentimentAnalysisEngine(String text) {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + fxmlFileName));
         
-        // This is the most reliable way to force the controller connection
         loader.setController(this); 
         
         Parent newView = loader.load();
         
         
         if ("dashboard.fxml".equals(fxmlFileName)) {
-            // Find nodes
             Button tBtn = (Button) newView.lookup("#btnDashTokenization");
             Button lBtn = (Button) newView.lookup("#btnDashLemmatization");
             Button pBtn = (Button) newView.lookup("#btnDashPosTagging");
             Button sBtn = (Button) newView.lookup("#btnDashSentiment");
 
-            // Direct binding
             if (tBtn != null) tBtn.setOnAction(this::handleNavigation);
             if (lBtn != null) lBtn.setOnAction(this::handleNavigation);
             if (pBtn != null) pBtn.setOnAction(this::handleNavigation);
@@ -771,12 +729,9 @@ private void runSentimentAnalysisEngine(String text) {
         }
     }
     
-    /**
-     * Minimizes the undecorated application window to the taskbar stage stream
-     */
+
     @FXML
     private void handleMinimizeWindow(ActionEvent event) {
-        // Find the active window stage scene graph via the source button event context
         javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         if (stage != null) {
             stage.setIconified(true);
@@ -784,29 +739,23 @@ private void runSentimentAnalysisEngine(String text) {
         }
     }
 
-    /**
-     * Safely terminates the app instance background processing stack tracks
-     */
+
     @FXML
     private void handleExitWindow(ActionEvent event) {
         System.out.println("Shutting down NLP project runtime environment tracks...");
-        // Exits completely and terminates underlying background thread pools safely
         javafx.application.Platform.exit();
         System.exit(0);
     }
     
     @FXML
     private void handleClearInput(ActionEvent event) {
-        // 1. Clear the main input area
         if (corpusInput != null) {
             corpusInput.clear();
         }
 
-        // 2. Optional: Reset focus to the text area
         corpusInput.requestFocus();
 
-        // 3. Optional: Clear the content area if you want a "fresh" start
-        // contentArea.getChildren().clear(); 
+
 
         System.out.println("Input cleared by user.");
     }

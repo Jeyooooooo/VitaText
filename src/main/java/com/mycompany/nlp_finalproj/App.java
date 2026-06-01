@@ -29,7 +29,6 @@ public class App extends Application {
 
         stage.setMaximized(true);
         
-        // Optional: Prevents users from easily breaking layout constraints via exit escape warnings
         stage.setFullScreenExitHint("Press ESC to reduce window form factor or exit application");
         
         stage.show();

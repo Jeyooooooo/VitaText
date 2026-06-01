@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. GLOBAL ROOT SETTINGS & LAYOUT RESETS
-   ========================================================================== */
+
 .root {
     -fx-font-family: "Montserrat";
 }
@@ -11,7 +9,6 @@
     -fx-max-height: -fx-inherited; 
 }
 
-/* Base Window Top Header Strip */
 .app-header {
     -fx-background-color: #FFFFFF;
     -fx-padding: 12 20;
@@ -20,7 +17,6 @@
     -fx-border-width: 0 0 1 0;
 }
 
-/* Sidebar Structural Column Container */
 .sidebar {
     -fx-background-color: #FFFFFF;
     -fx-padding: 24 16;
@@ -36,9 +32,7 @@
 }
 
 
-/* ==========================================================================
-   2. TEXT FIELDS & INPUT COMPONENT OVERRIDES
-   ========================================================================== */
+
 .corpus-textarea {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #343235;
@@ -52,7 +46,6 @@
     -fx-padding: 10;
 }
 
-/* Protect internal textarea scrolling architecture from general layout resets */
 .corpus-textarea .scroll-pane {
     -fx-background-color: transparent !important;
     -fx-max-width: inherit !important;
@@ -75,9 +68,6 @@
 }
 
 
-/* ==========================================================================
-   3. SIDEBAR NAVIGATION BUTTONS & ACCENTS
-   ========================================================================== */
 .section-header {
     -fx-text-fill: #64748B; 
     -fx-font-size: 12px;
@@ -106,7 +96,6 @@
     -fx-stroke-line-join: round;
 }
 
-/* Hover State Interactions */
 .nav-button:hover {
     -fx-background-color: #F1F5F9;
     -fx-text-fill: #1E293B;
@@ -116,7 +105,6 @@
     -fx-stroke: #1E293B;
 }
 
-/* Active Highlight Pill States */
 .active-nav {
     -fx-background-color: #D6EDFF; 
     -fx-text-fill: #1E293B;
@@ -127,9 +115,7 @@
 }
 
 
-/* ==========================================================================
-   4. WINDOW APPLICATION BUTTONS (PROCESS, CLEAR, TOP CONTROL)
-   ========================================================================== */
+
 .btn-process {
     -fx-background-color: #3B82F6;
     -fx-text-fill: white;
@@ -146,7 +132,6 @@
     -fx-background-color: #2563EB;
 }
 
-/* Trash Clear Action Button */
 .btn-clear {
     -fx-background-color: #F1F5F9;   
     -fx-text-fill: #64748B;          
@@ -177,7 +162,6 @@
     -fx-stroke: #EF4444;   
 }
 
-/* Minimize & Exit Top-Right Control Actions */
 .window-control-btn {
     -fx-background-color: transparent;
     -fx-background-radius: 8;
@@ -209,9 +193,7 @@
 .btn-exit:pressed { -fx-background-color: #FCA5A5; }
 
 
-/* ==========================================================================
-   5. TOP ROW STATISTICAL METRIC CARDS
-   ========================================================================== */
+ 
 .metric-card {
     -fx-background-radius: 16;
     -fx-padding: 16;
@@ -231,7 +213,6 @@
     -fx-font-weight: bold;
 }
 
-/* Color definitions for individual metric blocks */
 .metric-tokens    { -fx-background-color: #DCFCE7; }
 .icon-tokens      { -fx-background-color: #BBF7D0; -fx-text-fill: #15803D; }
 .metric-lemmas    { -fx-background-color: #E0F2FE; }
@@ -242,9 +223,6 @@
 .icon-sentiment   { -fx-background-color: #FED7AA; -fx-text-fill: #C2410C; }
 
 
-/* ==========================================================================
-   6. HIGH-FIDELITY GRAPHIC BACKGROUND CARDS (560x350)
-   ========================================================================== */
 .image-card {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 24; 
@@ -254,7 +232,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain; 
     
-    /* Strict dimensions lock to prevent asset distortion */
     -fx-min-width: 560px;
     -fx-pref-width: 560px;
     -fx-max-width: 560px;
@@ -266,7 +243,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(148, 163, 184, 0.06), 20, 0, 0, 6);
 }
 
-/* Asset mappings to project image folder targets */
 .img-card-token {
     -fx-background-image: url("../images/card-bg-token.png");
 }
@@ -280,7 +256,6 @@
     -fx-background-image: url("../images/card-bg-sentiment.png");
 }
 
-/* Feature buttons inside image cards */
 .feature-card-btn {
     -fx-background-radius: 99;
     -fx-padding: 10 20;
@@ -293,7 +268,6 @@
 .f-btn-pos       { -fx-background-color: #F3E8FF; -fx-text-fill: #7E22CE; }
 .f-btn-sentiment { -fx-background-color: #FFEDD5; -fx-text-fill: #C2410C; }
 
-/* Base Vector Settings for Button Internal Icons */
 .feature-card-btn .btn-arrow-icon {
     -fx-stroke-width: 2;
     -fx-fill: transparent;
@@ -301,7 +275,6 @@
     -fx-stroke-line-join: round;
 }
 
-/* Explicit Thematic Color Mapping Matches */
 .feature-card-btn .arrow-stroke-token {
     -fx-stroke: #15803D; /* Deep Forest Green */
 }
@@ -319,9 +292,6 @@
 }
 
 
-/* ==========================================================================
-   7. CORE SCROLLBAR STRIPPING SELECTORS (CENTRAL FRAMEWORK ONLY)
-   ========================================================================== */
 .content-scrollpane {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
@@ -330,7 +300,6 @@
     -fx-background-color: transparent;
 }
 
-/* Completely drop spatial footprint of workspace scrollbars without harming inner views */
 .content-scrollpane > .scroll-bar {
     -fx-background-color: transparent !important;
     -fx-max-width: 0 !important;
@@ -340,9 +309,6 @@
 }
 
 
-/* ==========================================================================
-   8. MODERN DATA TABLEVIEW HOVER COMPONENT RULES
-   ========================================================================== */
 .data-table {
     -fx-background-color: transparent;
     -fx-border-color: #E2E8F0;
@@ -383,7 +349,6 @@
     -fx-text-fill: #94A3B8;
 }
 
-/* Shared micro typography mappings */
 .logo-area        { -fx-padding: 0 0 10 0; }
 .logo-text        { -fx-text-fill: #1E293B; -fx-font-size: 20px; -fx-font-weight: bold; }
 .dashboard-title  { -fx-text-fill: #0F172A; -fx-font-size: 28px; -fx-font-weight: bold; }
@@ -391,7 +356,6 @@
 .section-title    { -fx-text-fill: #0F172A; -fx-font-size: 28px; -fx-font-weight: bold; }
 .section-subtitle { -fx-text-fill: #64748B; -fx-font-size: 14px; }
 
-/* Re-use micro metrics icon backgrounds setups */
 .card-icon-container {
     -fx-background-radius: 12;
     -fx-padding: 10;
@@ -414,9 +378,7 @@
 .icon-bg-sentiment { -fx-background-color: #FFEDD5; }
 .stroke-sentiment { -fx-stroke: #F97316; }
 
-/* ==========================================================================
-   Split Workspace Feature Panels Styling
-   ========================================================================== */
+
 
 .workspace-feature-card {
     -fx-background-color: #FFFFFF;
@@ -440,16 +402,13 @@
     -fx-font-weight: bold;
 }
 
-/* Right-aligned meta items badge counter */
 .workspace-card-badge {
     -fx-text-fill: #94A3B8;
     -fx-font-size: 13px;
     -fx-font-weight: 500;
 }
 
-/* ==========================================================================
-   Internal Component Scrolling Overrides (Prevents Layout Broken Forms)
-   ========================================================================== */
+
 .inner-panel-scrollpane {
     -fx-background-color: transparent !important;
     -fx-background-insets: 0 !important;
@@ -460,7 +419,6 @@
     -fx-background-color: transparent !important;
 }
 
-/* Clean track visual lines for inner content listings */
 .inner-panel-scrollpane .scroll-bar:vertical {
     -fx-background-color: transparent;
     -fx-width: 6px;
@@ -479,23 +437,18 @@
     -fx-padding: 0 !important;
 }
 
-/* ==========================================================================
-   High-Fidelity Capsule Token Layout System (No Outlines)
-   ========================================================================== */
 
-/* Shared base styling rules applied to every chip */
+
 .token-badge-pill {
     -fx-background-radius: 100;
     -fx-padding: 6 14; 
     -fx-alignment: center;
     
-    /* Transparent border trick to force perfect 8px margin spacing inside TextFlow views */
     -fx-border-color: transparent;
     -fx-border-width: 0 8 8 0; 
     -fx-margin: 4px;
 }
 
-/* Solid background palettes without visible borders */
 .badge-pill-word {
     -fx-background-color: #DCFCE7; /* Solid soft pastel green */
 }
@@ -504,21 +457,18 @@
     -fx-background-color: #F3E8FF; /* Solid soft pastel purple */
 }
 
-/* Internal components typography custom styles */
 .token-badge-pill .badge-pill-text {
     -fx-text-fill: #1E293B; /* Crisp slate dark gray text */
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
 
-/* Green count number inside word tokens */
 .badge-pill-word .badge-pill-count {
     -fx-text-fill: #15803D; 
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
 
-/* Purple count number inside punctuation tokens */
 .badge-pill-punctuation .badge-pill-count {
     -fx-text-fill: #7E22CE; 
     -fx-font-size: 13px;

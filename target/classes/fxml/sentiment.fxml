@@ -126,7 +126,6 @@
                         <HBox alignment="CENTER_LEFT">
                            <children>
                               <Label text="Dataset Justification" styleClass="feature-card-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-<!--                              <Label fx:id="lblTokensCountTag" text="0 tokens" styleClass="word-tip"/>-->
                            </children>
                         </HBox>
                         <Label text="We trained a Multinomial Naive Bayes classifier on 9,301 Kaggle lifestyle app reviews, which is then cleaned using Google Colab. Labeled Positive, Neutral, or Negative, the clean corpus matches our context vocabulary (fitness, diet, progress, healthy). It was parsed line-by-line using standard Java stream parsing libraries for quick inference processing loops." styleClass="feature-card-desc" wrapText="true" lineSpacing="3.0"/>
